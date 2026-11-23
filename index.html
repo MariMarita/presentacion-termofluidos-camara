@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- MANDATORY (dark-mode): Declare support for both light and dark themes to prevent FOUC -->
+  <meta name="color-scheme" content="light dark">
+  <title>Cámara Climática Instrumentada de 1000 in³ — Presentación de Sustentación</title>
+  <style>
+    /* MANDATORY (tabs): Register custom properties for scroll-driven edge fades */
+    @property --fade-start {
+      syntax: "<length>";
+      inherits: false;
+      initial-value: 0px;
+    }
+    @property --fade-end {
+      syntax: "<length>";
+      inherits: false;
+      initial-value: 0px;
+    }
+
+    /* MANDATORY (dark-mode): Apply color-scheme to :root and define raw light/dark tokens + fallbacks */
+    :root {
+      color-scheme: light dark;
+
+      --bg-light: #f8fafc;
+      --bg-dark: #0b1120;
+      --surface-light: #ffffff;
+      --surface-dark: #131c31;
+      --surface-alt-light: #f1f5f9;
+      --surface-alt-dark: #1e293b;
+      --text-light: #0f172a;
+      --text-dark: #f1f5f9;
+      --muted-light: #475569;
+      --muted-dark: #94a3b8;
+      --border-light: #cbd5e1;
+      --border-dark: #334155;
+
+      --brand-light: #0284c7;
+      --brand-dark: #38bdf8;
+      --brand-on-light: #ffffff;
+      --brand-on-dark: #082f49;
+
+      --heat-light: #dc2626;
+      --heat-dark: #f87171;
+      --ok-light: #15803d;
+      --ok-dark: #4ade80;
+      --warn-light: #b45309;
+      --warn-dark: #fbbf24;
+
+      --bg: var(--bg-light);
+      --surface: var(--surface-light);
+      --surface-alt: var(--surface-alt-light);
+      --text: var(--text-light);
+      --muted: var(--muted-light);
+      --border: var(--border-light);
+      --brand: var(--brand-light);
+      --brand-on: var(--brand-on-light);
+      --heat: var(--heat-light);
+      --ok: var(--ok-light);
+      --warn: var(--warn-light);
+
+      --scrollbar-track: #e2e8f0;
+      --scrollbar-thumb: #64748b;
+
+      @media (prefers-color-scheme: dark) {
+        --bg: var(--bg-dark);
+        --surface: var(--surface-dark);
+        --surface-alt: var(--surface-alt-dark);
+        --text: var(--text-dark);
+        --muted: var(--muted-dark);
+        --border: var(--border-dark);
+        --brand: var(--brand-dark);
+        --brand-on: var(--brand-on-dark);
+        --heat: var(--heat-dark);
+        --ok: var(--ok-dark);
+        --warn: var(--warn-dark);
+        --scrollbar-track: #1e293b;
+        --scrollbar-thumb: #94a3b8;
+      }
+
+      @supports (color: light-dark(white, black)) {
+        --bg: light-dark(var(--bg-light), var(--bg-dark));
+        --surface: light-dark(var(--surface-light), var(--surface-dark));
+        --surface-alt: light-dark(var(--surface-alt-light), var(--surface-alt-dark));
+        --text: light-dark(var(--text-light), var(--text-dark));
+        --muted: light-dark(var(--muted-light), var(--muted-dark));
+        --border: light-dark(var(--border-light), var(--border-dark));
+        --brand: light-dark(var(--brand-light), var(--brand-dark));
+        --brand-on: light-dark(var(--brand-on-light), var(--brand-on-dark));
+        --heat: light-dark(var(--heat-light), var(--heat-dark));
+        --ok: light-dark(var(--ok-light), var(--ok-dark));
+        --warn: light-dark(var(--warn-light), var(--warn-dark));
+        --scrollbar-track: light-dark(#e2e8f0, #1e293b);
+        --scrollbar-thumb: light-dark(#64748b, #94a3b8);
+      }
+
+      accent-color: var(--brand);
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* MANDATORY (scrollspy): Top navigation with scroll-target-group: auto */
+    header.site-header {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 30;
+      background: var(--surface);
+      border-block-end: 1px solid var(--border);
+      padding-inline: 1.25rem;
+      padding-block: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+    }
+
+    .badge-ok {
+      border-color: var(--ok);
+      color: var(--ok);
+    }
+
+    nav.scrollspy-nav {
+      scroll-target-group: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      overflow-x: auto;
+      max-inline-size: 100%;
+      padding-block: 0.2rem;
+    }
+
+    nav.scrollspy-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 0.4rem;
+      border-block-end: 3px solid transparent;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    nav.scrollspy-nav a:hover {
+      color: var(--text);
+      background: var(--surface-alt);
+    }
+
+    /* MANDATORY (scrollspy): Combine :target-current and fallback .target-current using :is() */
+    nav.scrollspy-nav a:is(:target-current, .target-current) {
+      color: var(--brand);
+      border-block-end-color: var(--brand);
+      font-weight: 700;
+      background: var(--surface-alt);
+    }
+
+    main {
+      max-inline-size: 1240px;
+      margin-inline: auto;
+      padding: 1.5rem 1.25rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.75rem;
+    }
+
+    section.slide-section {
+      scroll-margin-block-start: 4.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 1.6rem;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 0.04);
+    }
+
+    section.slide-section:focus {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-block-end: 1px solid var(--border);
+      padding-block-end: 0.85rem;
+      margin-block-end: 1.25rem;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 1.8rem;
+      block-size: 1.8rem;
+      border-radius: 0.45rem;
+      background: var(--brand);
+      color: var(--brand-on);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.9rem;
+      margin-block: 1rem;
+    }
+
+    .kpi-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .kpi-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .kpi-value {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .info-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.1rem;
+    }
+
+    .info-card h3 {
+      margin-block: 0 0.5rem;
+      font-size: 1.02rem;
+      color: var(--brand);
+    }
+
+    .formula-box {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.84rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-inline-start: 4px solid var(--brand);
+      padding: 0.75rem 0.95rem;
+      border-radius: 0.45rem;
+      margin-block: 0.65rem;
+      overflow-x: auto;
+    }
+
+    figure.media-card {
+      margin: 0;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    figure.media-card img {
+      inline-size: 100%;
+      block-size: 230px;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 0.4rem;
+      border-block-end: 1px solid var(--border);
+    }
+
+    figure.media-card figcaption {
+      padding: 0.75rem 0.9rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    figure.media-card figcaption strong {
+      color: var(--text);
+      font-size: 0.88rem;
+    }
+
+    /* MANDATORY (tabs): Accessible single-row scrollable tablist with 3px pseudo-element border indicator */
+    .tabs-container {
+      margin-block-start: 1rem;
+    }
+
+    .tablist {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: inline proximity;
+      scroll-padding-inline: 2.5rem;
+      border-block-end: 1px solid var(--border);
+      gap: 0.25rem;
+      --fade-size: 2.5rem;
+      --fade-dir: right;
+      --fade-start-pos: 0;
+      --fade-end-pos: 100%;
+      mask:
+        linear-gradient(black, black) no-clip subtract,
+        linear-gradient(to var(--fade-dir), black, transparent) var(--fade-start-pos) 0 / var(--fade-start) 100% no-repeat no-clip,
+        linear-gradient(to var(--fade-dir), transparent, black) var(--fade-end-pos) 0 / var(--fade-end) 100% no-repeat no-clip;
+      animation: reveal-fade-start linear both, hide-fade-end linear both;
+      animation-timeline: scroll(self inline);
+      animation-range: 0 var(--fade-size), calc(100% - var(--fade-size)) 100%;
+    }
+
+    @keyframes reveal-fade-start {
+      to { --fade-start: var(--fade-size); }
+    }
+    @keyframes hide-fade-end {
+      from { --fade-end: var(--fade-size); }
+    }
+
+    .tablist button[role="tab"],
+    .tablist button {
+      flex: none;
+      scroll-snap-align: start;
+      position: relative;
+      appearance: none;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 0.7rem 1.05rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .tablist button:hover {
+      color: var(--text);
+      background: var(--surface-alt);
+    }
+
+    /* MANDATORY (tabs): Style selected tab from aria-selected without altering box dimensions; draw underline with border on ::after */
+    .tablist button[aria-selected="true"] {
+      color: var(--brand);
+    }
+
+    .tablist button[aria-selected="true"]::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      border-block-end: 3px solid var(--brand);
+    }
+
+    /* MANDATORY (tabs): Put padding/border/background on child wrapper inside tabpanel so hidden="until-found" leaves no empty strip */
+    .tabpanel-stack {
+      display: grid;
+    }
+
+    .tabpanel-stack > [role="tabpanel"] {
+      grid-area: 1 / 1;
+    }
+
+    .panel-inner {
+      padding: 1.25rem;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-block-start: none;
+      border-end-start-radius: 0.75rem;
+      border-end-end-radius: 0.75rem;
+    }
+
+    /* MANDATORY (responsive-table): Sticky headers + @container stacked transformation */
+    .table-wrapper {
+      overflow: auto;
+      max-inline-size: 100%;
+      max-block-size: min(540px, 80vh);
+      container-type: inline-size;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      margin-block: 0.85rem;
+    }
+
+    table.data-table {
+      inline-size: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.86rem;
+    }
+
+    table.data-table caption {
+      text-align: start;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      background: var(--surface-alt);
+      border-block-end: 1px solid var(--border);
+    }
+
+    table.data-table thead {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 2;
+      background: var(--surface-alt);
+    }
+
+    table.data-table th,
+    table.data-table td {
+      padding: 0.65rem 0.9rem;
+      text-align: start;
+      border-block-end: 1px solid var(--border);
+    }
+
+    table.data-table tbody th {
+      position: sticky;
+      inset-inline-start: 0;
+      z-index: 1;
+      background: var(--surface);
+      font-weight: 700;
+    }
+
+    @container (width < 600px) {
+      table.data-table,
+      table.data-table thead,
+      table.data-table tbody,
+      table.data-table tr,
+      table.data-table th,
+      table.data-table td {
+        display: block;
+      }
+
+      table.data-table thead {
+        display: none;
+      }
+
+      table.data-table tr {
+        margin-block-end: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+      }
+
+      table.data-table tbody th {
+        position: sticky;
+        inset-block-start: 0;
+        z-index: 2;
+        background: var(--surface-alt);
+      }
+
+      table.data-table td:nth-child(2)::before {
+        content: var(--label-2) ": ";
+        font-weight: 700;
+        color: var(--muted);
+      }
+      table.data-table td:nth-child(3)::before {
+        content: var(--label-3) ": ";
+        font-weight: 700;
+        color: var(--muted);
+      }
+      table.data-table td:nth-child(4)::before {
+        content: var(--label-4) ": ";
+        font-weight: 700;
+        color: var(--muted);
+      }
+      table.data-table td:nth-child(5)::before {
+        content: var(--label-5) ": ";
+        font-weight: 700;
+        color: var(--muted);
+      }
+    }
+
+    /* Buttons & Declarative Dialogs */
+    button.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.48rem 0.9rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button.btn-primary {
+      background: var(--brand);
+      color: var(--brand-on);
+      border-color: var(--brand);
+    }
+
+    button.btn:hover {
+      filter: brightness(1.06);
+    }
+
+    /* MANDATORY (light-dismiss-a-dialog): Modal dialog backdrop styling */
+    dialog.modal-box {
+      max-inline-size: min(880px, 92vw);
+      inline-size: 100%;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 1.35rem;
+      box-shadow: 0 20px 50px rgb(0 0 0 / 0.35);
+    }
+
+    dialog.modal-box::backdrop {
+      background-color: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(3px);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-block-end: 1px solid var(--border);
+      padding-block-end: 0.75rem;
+      margin-block-end: 1rem;
+    }
+
+    .dialog-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    /* Script / Teleprompter cards */
+    .script-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-inline-start: 4px solid var(--brand);
+      border-radius: 0.6rem;
+      padding: 1rem 1.15rem;
+      margin-block-end: 0.9rem;
+    }
+
+    .script-card h4 {
+      margin: 0 0 0.45rem;
+      font-size: 0.96rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .script-quote {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .cue-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.35rem;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--brand);
+    }
+
+    canvas.plot-canvas {
+      inline-size: 100%;
+      block-size: 300px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.65rem;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header with Scrollspy Navigation -->
+  <header class="site-header">
+    <div class="brand-title">
+      <span class="step-num">TF</span>
+      <div>
+        <div>Cámara Climática de 1000 in³ — Agua–Aire</div>
+        <div style="font-size:0.74rem;color:var(--muted);font-weight:500;">Universidad Militar Nueva Granada · Termofluidos 2026-2 · Cajicá (74.14 kPa)</div>
+      </div>
+    </div>
+
+    <nav class="scrollspy-nav" aria-label="Secciones de la presentación">
+      <a href="#sec-resumen">1. Resumen</a>
+      <a href="#sec-diseno">2. Cámara y Termo</a>
+      <a href="#sec-hx">3. Intercambiador</a>
+      <a href="#sec-control">4. Electrónica y Control</a>
+      <a href="#sec-simulacion">5. Simulación</a>
+      <a href="#sec-experimento">6. Validación Final</a>
+      <a href="#sec-guion">7. Guion por Integrante</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 1: RESUMEN EJECUTIVO Y CUMPLIMIENTO                        -->
+    <!-- ================================================================== -->
+    <section id="sec-resumen" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">1</span> Resumen Ejecutivo y Cumplimiento del Reto</h2>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge-pill badge-ok">✓ +10 K en 17.8 min (máx. 60 min)</span>
+          <span class="badge-pill badge-ok">✓ 22.1 min estable a ±0.62 K (máx. ±1 K)</span>
+          <span class="badge-pill">Bonificación: Wi-Fi + Web + Cascada PI</span>
+        </div>
+      </div>
+
+      <p style="margin-block-start:0;">
+        Se diseñó, construyó, instrumentó y validó computacional y experimentalmente una <strong>cámara climática de calentamiento indirecto agua–aire</strong> que aprovecha energía térmica de agua caliente a través de un radiador automotriz de cobre de dos pasadas, manteniendo la zona de ensayo completamente despejada y uniforme.
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Volumen libre de ensayo</span>
+          <span class="kpi-value">1156 in³</span>
+          <span class="kpi-sub">265 × 260 × 275 mm (0.01895 m³ &gt; 1000 in³)</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Aislamiento y Pérdidas</span>
+          <span class="kpi-value">UA = 0.519 W/K</span>
+          <span class="kpi-sub">Al 0.95 mm + EPS 40 mm + MDF 15 mm (5.70 W a +11 K)</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Intercambiador y Caudales</span>
+          <span class="kpi-value">K = 4.54 W/K</span>
+          <span class="kpi-sub">ε = 0.870 · Agua 1.76 L/min · Aire 23 m³/h</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Tiempo a +10 K (Prueba 2)</span>
+          <span class="kpi-value">17.8 min</span>
+          <span class="kpi-sub">24.6 min en frío (Prueba 1) · Error modelo 0.6 %</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Estabilidad y Uniformidad</span>
+          <span class="kpi-value">22.1 min (±0.62 K)</span>
+          <span class="kpi-sub">Desviación máx. a consigna: 0.76 K (&le; 1.0 K)</span>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-block-start:1.25rem;">
+        <figure class="media-card">
+          <img src="figuras/cad/cad_isometricos.png" alt="Vistas isométricas del modelo CAD en SolidWorks">
+          <figcaption>
+            <strong>Diseño CAD SolidWorks 2025 (20 planos A3)</strong>
+            <span>Caja de ensayo útil adelante y compartimento técnico posterior con reja perforada en L.</span>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="figuras/prototipo/foto_montaje_completo.jpg" alt="Montaje experimental completo de la cámara climática">
+          <figcaption>
+            <strong>Prototipo Funcional Integrado</strong>
+            <span>Cámara cerrada, tanque de 4.4 L con resistencia de 833 W, bomba R385 y electrónica ESP32-S3.</span>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="figuras/prototipo/foto_interior_camara.jpg" alt="Interior de la cámara construida con forro de aluminio y sensores">
+          <figcaption>
+            <strong>Interior de la Cámara y Pared Compuesta</strong>
+            <span>Forro de aluminio de 0.95 mm, aislamiento EPS de 40 mm, reja en L y 4 sondas DS18B20 de aire.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 2: DISEÑO DE LA CÁMARA Y ANÁLISIS TERMODINÁMICO            -->
+    <!-- ================================================================== -->
+    <section id="sec-diseno" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">2</span> Diseño Mecánico y Análisis Termodinámico (en Cajicá: 74.14 kPa)</h2>
+        <button type="button" class="btn btn-primary" commandfor="dlg-ecuaciones-termo" command="show-modal">
+          Ver Cálculos a Mano Paso a Paso
+        </button>
+      </div>
+
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Geometría, Capas de la Pared y Hermeticidad (D1, M1, M2)</h3>
+          <ul style="margin:0;padding-inline-start:1.2rem;display:flex;flex-direction:column;gap:0.45rem;">
+            <li><strong>Criterio geométrico:</strong> Aunque la esfera reduce el área 19.4 %, se eligió un prisma rectangular casi cúbico para fabricar juntas planas sin fugas con lámina y tablero comercial.</li>
+            <li><strong>Volumen dividido en dos zonas:</strong>
+              <ul>
+                <li><strong>Caja de ensayo útil:</strong> 265 × 260 × 275 mm = <strong>0.018948 m³ (1156 in³)</strong>, superando el mínimo obligatorio de 1000 in³.</li>
+                <li><strong>Compartimento del radiador:</strong> 150 × 260 × 275 mm (separado por reja metálica perforada en L que protege al usuario y deja circular el aire).</li>
+              </ul>
+            </li>
+            <li><strong>Pared compuesta (adentro → afuera):</strong> Lámina de aluminio de <strong>0.95 mm</strong> (distribuye el calor y protege el EPS) + Poliestireno expandido (EPS) de <strong>40 mm</strong> (k = 0.038 W/m·K) + Cascarón estructural de MDF de <strong>15 mm</strong> (k = 0.13 W/m·K).</li>
+            <li><strong>Efecto altitud de Cajicá (2558 m, 74.14 kPa):</strong> La densidad del aire seco a 30 °C baja a <strong>0.852 kg/m³</strong> (27 % menor que a nivel del mar) y el agua hierve a <strong>91.5 °C</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Balances de Masa y Energía, UA y Masa Térmica (D1)</h3>
+          <div class="formula-box">
+            <strong>1. Balance de masa (lazo cerrado de agua y aire interior):</strong><br>
+            ṁ<sub>w,ent</sub> = ṁ<sub>w,sal</sub> = ρ<sub>w</sub>·V̇<sub>w</sub> = 0.0288 kg/s (a 1.76 L/min)<br>
+            m<sub>aire</sub> = ρ<sub>aire</sub>·V<sub>int</sub> = 0.852 × 0.0297 = 0.0253 kg (ṁ<sub>aire</sub> = 5.44×10⁻³ kg/s)
+          </div>
+          <div class="formula-box">
+            <strong>2. Red de resistencias térmicas 3D (con aristas y esquinas):</strong><br>
+            R<sub>total</sub> = R<sub>i</sub> (0.114) + R<sub>al</sub> (0.00001) + R<sub>eps</sub> (1.569) + R<sub>mdf</sub> (0.138) + R<sub>o</sub> (0.141) = <strong>1.928 K/W</strong><br>
+            UA = 1 / R<sub>total</sub> = <strong>0.519 W/K</strong> (el EPS aporta el <strong>81.4 %</strong> del aislamiento)
+          </div>
+          <div class="formula-box">
+            <strong>3. Balance transitorio, Masa Térmica y Potencia:</strong><br>
+            C<sub>ef</sub> = ∑(m·c·f) = <strong>6911 J/K</strong> (Aluminio 19.5 %, Radiador+agua 33.0 %, MDF 28.1 %, Aire 0.4 %)<br>
+            C<sub>ef</sub>·(dT/dt) = Q̇<sub>hx</sub> − UA·(T − T<sub>∞</sub>) · τ = C<sub>ef</sub>/UA = 222 min<br>
+            Para +11 K en 20 min: <strong>Q̇<sub>req</sub> = 66.2 W</strong> · Mantenimiento: <strong>Q̇<sub>mant</sub> = 5.70 W</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-block-start:1.25rem;">
+        <figure class="media-card">
+          <img src="figuras/cad/corte_lateral.png" alt="Corte lateral acotado de la cámara climática">
+          <figcaption>
+            <strong>Corte Lateral Acotado del Diseño</strong>
+            <span>Disposición del aislamiento EPS de 40 mm, tapa escalonada con doble sello, repisa del radiador y flujo de aire.</span>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="figuras/cad/despiece_termico.png" alt="Despiece del conjunto térmico interno">
+          <figcaption>
+            <strong>Despiece del Conjunto Térmico Interno</strong>
+            <span>Radiador de cobre de dos pasadas, ventilador axial, repisa ranurada y reja separadora perforada.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 3: INTERCAMBIADOR AGUA-AIRE Y CIRCUITO HIDRÁULICO          -->
+    <!-- ================================================================== -->
+    <section id="sec-hx" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">3</span> Diseño del Intercambiador (ε–NTU) y Circuito Hidráulico (D2, M3, M4)</h2>
+        <span class="badge-pill">Radiador de cobre 2 pasadas + Ventilador 92 mm + Bomba R385</span>
+      </div>
+
+      <div class="grid-3">
+        <div class="info-card">
+          <h3>Radiador de Cobre (D2)</h3>
+          <p style="font-size:0.88rem;margin-block:0 0.5rem;">
+            Núcleo automotriz de calefacción (Toyota) de <strong>215 × 170 × 50 mm</strong>:
+          </p>
+          <ul style="font-size:0.85rem;margin:0;padding-inline-start:1.15rem;">
+            <li><strong>29 tubos planos</strong> de latón/cobre en 2 pasadas (15 ida + 14 retorno).</li>
+            <li><strong>Área de aletas:</strong> A<sub>aleta</sub> = <strong>1.421 m²</strong> (persianas louvered, paso 1.5 mm, η<sub>f</sub> = 0.938, η<sub>o</sub> = 0.946).</li>
+            <li><strong>Área exterior de tubos:</strong> A<sub>tubo</sub> = <strong>0.214 m²</strong> (Área total lado aire = <strong>1.635 m²</strong>).</li>
+            <li><strong>Lado agua:</strong> Nu<sub>w</sub> = 8.235 (flujo laminar en ducto plano), h<sub>w</sub> = 1621 W/(m²·K).</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Punto de Operación ε–NTU (D2, M3)</h3>
+          <p style="font-size:0.88rem;margin-block:0 0.5rem;">
+            Con el <strong>ventilador axial de 92 × 92 × 25 mm</strong> instalado (12 V, 0.14 A) a la densidad de Cajicá:
+          </p>
+          <div class="formula-box">
+            V̇<sub>aire</sub> = <strong>23.0 m³/h</strong> (ΔP = 10.6 Pa)<br>
+            C<sub>aire</sub> = C<sub>min</sub> = <strong>5.23 W/K</strong><br>
+            C<sub>agua</sub> = C<sub>max</sub> = <strong>109.7 W/K</strong> (a 1.6 L/min)<br>
+            UA<sub>hx</sub> = <strong>11.4 W/K</strong> → NTU = 2.18<br>
+            <strong>ε = 0.870</strong> → <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>
+          </div>
+          <p style="font-size:0.82rem;color:var(--muted);margin:0;">
+            En las pruebas reales se identificó K<sub>exp</sub> ≈ 4.65 W/K (diferencia &lt; 2.5 %).
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Tanque, Resistencia y Bomba (M4)</h3>
+          <ul style="font-size:0.85rem;margin:0;padding-inline-start:1.15rem;display:flex;flex-direction:column;gap:0.4rem;">
+            <li><strong>Tanque:</strong> Recipiente de polipropileno Plásticos Kendy (6.5 L, T<sub>máx</sub> = 121 °C) con <strong>4.4 L de agua</strong> (C<sub>t</sub> = 18.3 kJ/K).</li>
+            <li><strong>Por qué con tapa:</strong> Sin tapa la evaporación pierde 59.7 a 168.7 W; con tapa se evita humidificar el laboratorio y se protege la electrónica.</li>
+            <li><strong>Resistencia:</strong> Tubular sumergida en U de 1000 W nominales a 120 V (<strong>833 W medidos</strong>: 118.4 V × 7.04 A).</li>
+            <li><strong>Bomba:</strong> Diafragma R385 (12 V DC, 0.30 A) con mangueras de PVC de 8 mm; caudal medido por aforo: <strong>1.76 L/min</strong> (ΔP<sub>circuito</sub> = 4.71 kPa).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-block-start:1.25rem;">
+        <figure class="media-card">
+          <img src="figuras/prototipo/recipiente_agua.png" alt="Recipiente de polipropileno Plásticos Kendy de 6.5 L">
+          <figcaption>
+            <strong>Recipiente de Polipropileno (APTO 121 °C)</strong>
+            <span>Caja Tayrona No. 2 Alta de 6.5 L cargada con 4.4 L de agua, pasamuros sellados y tapa no hermética.</span>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="figuras/prototipo/foto_circuito_hidraulico.jpg" alt="Fotografía del circuito hidráulico con tanque, resistencia y bomba R385">
+          <figcaption>
+            <strong>Circuito Hidráulico Construido</strong>
+            <span>Tanque con resistencia en U de 833 W, sonda DS18B20 de agua, bomba R385 y mangueras hacia el radiador.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 4: ELECTRÓNICA, INSTRUMENTACIÓN Y CONTROL EN CASCADA       -->
+    <!-- ================================================================== -->
+    <section id="sec-control" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">4</span> Electrónica, Acondicionamiento y Control en Cascada (E1–E4, C1–C3)</h2>
+        <span class="badge-pill">ESP32-S3 + 7× DS18B20 + Filtro de Kalman + Cascada PI</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Por qué Control en Cascada PI + On/Off (C1, C2)</h3>
+          <p style="font-size:0.87rem;margin-block:0 0.6rem;">
+            El tanque con 4.4 L de agua y el radiador con el ventilador de 92 mm tienen constantes de tiempo del mismo orden (~14 min). Si se conmutara la resistencia de 833 W mirando solo el aire, el calor acumulado en el agua seguiría subiendo la cámara varios grados después de apagar.
+          </p>
+          <div class="formula-box">
+            <strong>Lazo externo PI (calcula consigna del agua T<sub>set,w</sub> cada 1 s):</strong><br>
+            e<sub>a</sub> = T<sub>set,a</sub> − T<sub>aire</sub> &nbsp;(con T<sub>set,a</sub> = T<sub>amb</sub> + 11.0 K)<br>
+            T*<sub>w</sub> = T<sub>amb</sub> + 2.0·(T<sub>set,a</sub> − T<sub>amb</sub>) + 0.6·e<sub>a</sub> + 0.0025·∫e<sub>a</sub> dt<br>
+            Saturación: T<sub>set,w</sub> ∈ [T<sub>set,a</sub>, min(T<sub>amb</sub> + 30 K, 58 °C)]
+          </div>
+          <div class="formula-box">
+            <strong>Lazo interno On/Off con histéresis (±0.2 K) sobre T<sub>agua,ent</sub>:</strong><br>
+            • Si T<sub>ent</sub> &lt; T<sub>set,w</sub> − 0.2 K → Resistencia ON<br>
+            • Si T<sub>ent</sub> &gt; T<sub>set,w</sub> + 0.2 K → Resistencia OFF<br>
+            • Si e<sub>a</sub> &lt; −0.3 K → Apagado directo y congelación del integrador (anti-windup)
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Sensores 1-Wire, Acondicionamiento y Potencia (E1–E4)</h3>
+          <ul style="font-size:0.86rem;margin:0;padding-inline-start:1.15rem;display:flex;flex-direction:column;gap:0.45rem;">
+            <li><strong>7 sondas digitales DS18B20 (E1):</strong> Bus único 1-Wire en <code>GPIO 4</code> con pull-up de 5 kΩ a 3.3 V (resolución 12 bits = 0.0625 °C, tiempo de conversión asíncrono 750 ms). 4 en el aire interior, 1 en ambiente, 1 en agua de entrada (tanque) y 1 en agua de salida.</li>
+            <li><strong>Filtro de 3 etapas + Calibración (E2):</strong>
+              <ol>
+                <li>Verificación CRC de 8 bits y descarte de −127 °C y 85 °C.</li>
+                <li>Rechazo de picos (&gt; 3 K en aire o &gt; 8 K en agua en 1 s).</li>
+                <li>Filtro de Kalman escalar (Q = 0.002 K², R = 0.03 K²) + corrección de desfases en frío.</li>
+              </ol>
+            </li>
+            <li><strong>Conmutación y Potencia (E3, E4):</strong> ESP32-S3-N16R8 gobierna módulo optoacoplado de relés SRD-05VDC-SL-C (lógica invertida: <code>GPIO 5</code> Bomba, <code>GPIO 6</code> Resistencia, <code>GPIO 7</code> Ventilador). Línea AC de 120 V aislada de la fuente DC BAKU de 12 V (consumo total DC: 5.3 W).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Diagrama de bloques vectorial SVG del control en cascada -->
+      <div class="info-card" style="margin-block-start:1.1rem;">
+        <h3 style="margin-block-end:0.65rem;">Diagrama de Bloques del Control en Cascada Implementado en el Firmware</h3>
+        <svg viewBox="0 0 960 190" style="inline-size:100%;block-size:auto;background:var(--bg);border:1px solid var(--border);border-radius:0.6rem;padding:0.5rem;" role="img" aria-label="Diagrama de bloques del control en cascada PI más on/off">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor" />
+            </marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.6" font-family="system-ui, sans-serif" font-size="11">
+            <!-- Setpoint -->
+            <text x="15" y="70" fill="currentColor" font-weight="700">T_set,a = T_amb + 11 K</text>
+            <line x1="145" y1="66" x2="178" y2="66" marker-end="url(#arrow)" />
+            <!-- Sum 1 -->
+            <circle cx="192" cy="66" r="12" />
+            <text x="188" y="70" fill="currentColor">+</text>
+            <text x="196" y="92" fill="currentColor">−</text>
+            <line x1="204" y1="66" x2="245" y2="66" marker-end="url(#arrow)" />
+            <text x="218" y="58" fill="currentColor">e_a</text>
+            <!-- Lazo externo PI -->
+            <rect x="248" y="38" width="165" height="56" rx="6" fill="var(--surface-alt)" stroke="var(--brand)" stroke-width="2" />
+            <text x="330" y="58" text-anchor="middle" fill="currentColor" font-weight="700">Lazo Externo PI + Sat.</text>
+            <text x="330" y="74" text-anchor="middle" fill="currentColor">k_ff=2.0, R=0.6, k_i=0.0025</text>
+            <text x="330" y="88" text-anchor="middle" fill="currentColor">T_set,w ≤ min(T_amb+30, 58°C)</text>
+            <line x1="413" y1="66" x2="462" y2="66" marker-end="url(#arrow)" />
+            <text x="437" y="58" text-anchor="middle" fill="currentColor">T_set,w</text>
+            <!-- Lazo interno On/Off -->
+            <rect x="465" y="38" width="135" height="56" rx="6" fill="var(--surface-alt)" stroke="var(--brand)" stroke-width="2" />
+            <text x="532" y="60" text-anchor="middle" fill="currentColor" font-weight="700">Relé On/Off</text>
+            <text x="532" y="78" text-anchor="middle" fill="currentColor">Histéresis ±0.2 K</text>
+            <line x1="600" y1="66" x2="642" y2="66" marker-end="url(#arrow)" />
+            <text x="621" y="58" text-anchor="middle" fill="currentColor">833 W</text>
+            <!-- Tanque -->
+            <rect x="645" y="38" width="125" height="56" rx="6" fill="var(--surface)" />
+            <text x="707" y="60" text-anchor="middle" fill="currentColor" font-weight="700">Tanque + Bomba</text>
+            <text x="707" y="78" text-anchor="middle" fill="currentColor">4.4 L · 1.76 L/min</text>
+            <line x1="770" y1="66" x2="805" y2="66" marker-end="url(#arrow)" />
+            <!-- Radiador y Cámara -->
+            <rect x="808" y="38" width="130" height="56" rx="6" fill="var(--surface)" />
+            <text x="873" y="60" text-anchor="middle" fill="currentColor" font-weight="700">Radiador + Cámara</text>
+            <text x="873" y="78" text-anchor="middle" fill="currentColor">K = 4.54 W/K</text>
+            <!-- Feedback T_ent -->
+            <line x1="787" y1="66" x2="787" y2="128" />
+            <line x1="787" y1="128" x2="532" y2="128" />
+            <line x1="532" y1="128" x2="532" y2="96" marker-end="url(#arrow)" />
+            <text x="660" y="122" text-anchor="middle" fill="currentColor">Sonda DS18B20 Agua Entrada (T_ent)</text>
+            <!-- Feedback T_aire -->
+            <line x1="873" y1="94" x2="873" y2="165" />
+            <line x1="873" y1="165" x2="192" y2="165" />
+            <line x1="192" y1="165" x2="192" y2="80" marker-end="url(#arrow)" />
+            <text x="532" y="158" text-anchor="middle" fill="currentColor">Promedio 4 Sondas DS18B20 de Aire (T_1..T_4) con Filtro de Kalman</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="grid-3" style="margin-block-start:1.25rem;">
+        <figure class="media-card">
+          <img src="figuras/instrumentacion/modulo_reles.png" alt="Módulo de 8 relés optoacoplados Songle SRD-05VDC-SL-C">
+          <figcaption>
+            <strong>Módulo de Relés Optoacoplados (E3, E4)</strong>
+            <span>Conmutación independiente de bomba (GPIO 5), resistencia de 833 W (GPIO 6) y ventilador (GPIO 7).</span>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="figuras/interfaz/gui_escritorio_prueba_final.png" alt="Interfaz gráfica de escritorio PyQt5 en la prueba final">
+          <figcaption>
+            <strong>GUI de Escritorio en PyQt5 (C3)</strong>
+            <span>Cumple los 10 indicadores exigidos: temperaturas, gráficas, estado, tiempo, alarmas, consumo (Wh) y eficiencia (%).</span>
+          </figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="figuras/interfaz/gui_web_movil_ensayo.jpeg" alt="Interfaz web móvil servida por la ESP32-S3 por Wi-Fi">
+          <figcaption>
+            <strong>Servidor Web Wi-Fi en 192.168.4.1 (Bonificación)</strong>
+            <span>Monitoreo y control remoto desde el celular sin instalar aplicaciones, con descarga directa del CSV.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 5: MODELO MATEMÁTICO Y SIMULACIÓN (PYTHON + ANSYS)         -->
+    <!-- ================================================================== -->
+    <section id="sec-simulacion" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">5</span> Modelos Matemáticos y Simulación Computacional (D3)</h2>
+        <span class="badge-pill">6 Modelos · Independencia de Malla · Python vs. ANSYS 16</span>
+      </div>
+
+      <p style="margin-block-start:0;">
+        Se implementaron <strong>seis modelos complementarios</strong> que cubren los cuatro requisitos mínimos de simulación: (1) sensibilidad de malla y paso de tiempo, (2) flujo de calor estacionario cámara → ambiente, (3) calentamiento transitorio de las paredes, y (4) comportamiento acoplado del intercambiador y del circuito hidráulico.
+      </p>
+
+      <!-- Tabs interactivos para explorar los resultados de simulación -->
+      <div class="tabs-container" data-tabs>
+        <div class="tablist" focusgroup="tablist nomemory" aria-label="Resultados de simulación computacional">
+          <button type="button" role="tab" id="tab-sim-1" aria-selected="true" focusgroupstart>1. Malla y Paredes 3D (ANSYS)</button>
+          <button type="button" role="tab" id="tab-sim-2" aria-selected="false">2. Transitorio Paredes y Sistema</button>
+          <button type="button" role="tab" id="tab-sim-3" aria-selected="false">3. Teórico vs. Simulado (Prototipo Real)</button>
+        </div>
+
+        <div class="tabpanel-stack">
+          <div role="tabpanel" aria-labelledby="tab-sim-1" tabindex="0">
+            <div class="panel-inner">
+              <div class="grid-3">
+                <figure class="media-card">
+                  <img src="figuras/ansys_paredes/estacionario_temperatura.png" alt="Campo estacionario de temperatura en las paredes en ANSYS">
+                  <figcaption>
+                    <strong>Campo Estacionario de Temperatura (ANSYS SOLID90)</strong>
+                    <span>Malla fina de 74 088 nodos (convergencia &lt; 0.03 %). El salto térmico de 11 K cae casi íntegro en los 40 mm de EPS.</span>
+                  </figcaption>
+                </figure>
+                <figure class="media-card">
+                  <img src="figuras/ansys_paredes/estacionario_flujo_calor.png" alt="Magnitud del flujo de calor en las paredes en ANSYS">
+                  <figcaption>
+                    <strong>Flujo de Calor Cámara → Ambiente (Q̇ = 5.47 W)</strong>
+                    <span>Diferencia de solo 4.0 % frente a la red analítica con factores de forma (5.70 W).</span>
+                  </figcaption>
+                </figure>
+                <figure class="media-card">
+                  <img src="figuras/workbench/wb_estacionario_temperatura.png" alt="Verificación cruzada en ANSYS Workbench">
+                  <figcaption>
+                    <strong>Verificación en ANSYS Workbench (225 466 nodos)</strong>
+                    <span>Reproduce la misma distribución de temperatura (30.0 °C adentro a 19.86 °C afuera).</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div role="tabpanel" aria-labelledby="tab-sim-2" hidden="until-found">
+            <div class="panel-inner">
+              <div class="grid-3">
+                <figure class="media-card">
+                  <img src="figuras/ansys_paredes/transitorio_curva.png" alt="Curva transitoria de calentamiento a potencia constante en ANSYS">
+                  <figcaption>
+                    <strong>Transitorio de la Pared 3D a Potencia Constante (45.2 W)</strong>
+                    <span>Alcanza +10 K (29 °C) en 14.3 min porque el MDF exterior aún no se ha calentado en los primeros 15 min.</span>
+                  </figcaption>
+                </figure>
+                <figure class="media-card">
+                  <img src="figuras/ansys_sistema/temperaturas_transitorias.png" alt="Temperaturas transitorias del sistema acoplado en ANSYS">
+                  <figcaption>
+                    <strong>Sistema Completo en ANSYS (SOLID70 + FLUID116)</strong>
+                    <span>Coincide con el modelo de diferencias finitas en Python dentro de 0.01 K (tiempo a +10 K: 12.6 min con ventilador de diseño).</span>
+                  </figcaption>
+                </figure>
+                <figure class="media-card">
+                  <img src="figuras/ansys_sistema/perfil_radiador.png" alt="Perfil espacial de temperatura del agua en las dos pasadas del radiador">
+                  <figcaption>
+                    <strong>Perfil Espacial del Agua en el Radiador (2 pasadas)</strong>
+                    <span>Caída de temperatura a lo largo de los 0.43 m de tubos planos (ΔT<sub>w</sub> se estabiliza en 0.05 K en régimen).</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div role="tabpanel" aria-labelledby="tab-sim-3" hidden="until-found">
+            <div class="panel-inner">
+              <div class="grid-2">
+                <figure class="media-card">
+                  <img src="figuras/modelo_python/teorico_vs_simulado.png" alt="Comparación entre modelo teórico concentrado y simulado distribuido">
+                  <figcaption>
+                    <strong>Modelo Teórico Concentrado vs. Simulado Distribuido (con Ventilador de 92 mm y Cascada PI)</strong>
+                    <span>Con las propiedades de diseño el tiempo a +10 K difiere solo 2.1 % (26.6 min vs. 27.1 min); con las pérdidas medidas en laboratorio difiere 3.3 % (17.3 min vs. 17.9 min).</span>
+                  </figcaption>
+                </figure>
+                <div class="info-card">
+                  <h3>Por qué coinciden tan bien ambos modelos</h3>
+                  <p style="font-size:0.87rem;">
+                    En el modelo teórico concentrado (3 EDO) el acoplamiento agua–aire se calcula con la fórmula analítica <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>, mientras que el modelo simulado distribuido divide los tubos del radiador en 20 celdas axiales y el EPS en 12 capas con masa térmica.
+                  </p>
+                  <p style="font-size:0.87rem;margin-block-end:0;">
+                    Como el caudal de agua es alto (C<sub>min</sub>/C<sub>max</sub> = 0.044), la caída de temperatura del agua en el radiador es menor a 0.3 K y la fórmula analítica ε–NTU reproduce exactamente la integración celda por celda.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 6: VALIDACIÓN EXPERIMENTAL Y COMPARACIÓN FINAL             -->
+    <!-- ================================================================== -->
+    <section id="sec-experimento" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">6</span> Validación Experimental Final (22 de Noviembre de 2026) (C4)</h2>
+        <span class="badge-pill badge-ok">Cumplimiento 100 % verificable en CSV</span>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3 style="margin-block-start:0;font-size:1.02rem;">Gráfica Interactiva: Teórico vs. Simulado vs. Experimental (Prueba 2)</h3>
+          <p style="font-size:0.84rem;color:var(--muted);margin-block-start:0;">
+            Pasa el cursor sobre la gráfica para inspeccionar segundo a segundo la diferencia aire–ambiente (ΔT = T<sub>aire</sub> − T<sub>amb</sub>) medida en la Prueba 2 frente a los modelos teórico y simulado.
+          </p>
+          <canvas id="valCanvas" class="plot-canvas" width="600" height="300"></canvas>
+          <div id="canvasReadout" style="font-family:ui-monospace,monospace;font-size:0.8rem;margin-block-start:0.45rem;color:var(--brand);font-weight:600;">
+            Pasa el cursor sobre la curva para ver ΔT experimental, simulado y teórico.
+          </div>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns:1fr;">
+          <figure class="media-card">
+            <img src="figuras/modelo_python/ensayo_final_experimental.png" alt="Curvas experimentales de la prueba 2 del 22 de noviembre de 2026">
+            <figcaption>
+              <strong>Registro Experimental de la Prueba 2 (39.9 min, 2394 muestras a 1 Hz)</strong>
+              <span>Llegada a +10 K a los 17.8 min y sostenimiento durante 22.1 min dentro de la banda de ±1 K con 5 pulsos cortos de la resistencia.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Tabla Responsiva de Comparación Teórico vs Simulado vs Experimental -->
+      <div tabindex="0" role="region" aria-labelledby="cap-comparacion" class="table-wrapper">
+        <table class="data-table" style="--label-2:'Teórico (concentrado)'; --label-3:'Simulado (distribuido)'; --label-4:'Experimental (Prueba 2)'; --label-5:'Error Sim. vs Exp.';">
+          <caption id="cap-comparacion">Comparación y Error Relativo: Modelo Teórico vs. Simulación Distribuida vs. Experimento (Prueba 2)</caption>
+          <thead>
+            <tr>
+              <th>Magnitud Evaluada</th>
+              <th>Teórico (concentrado)</th>
+              <th>Simulado (distribuido)</th>
+              <th>Experimental (Prueba 2)</th>
+              <th>Error Sim. vs. Exp.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Tiempo hasta ΔT = +10 K [min]</th>
+              <td>17.3</td>
+              <td>17.9</td>
+              <td><strong>17.8</strong> (requisito &le; 60)</td>
+              <td><strong>0.6 %</strong></td>
+            </tr>
+            <tr>
+              <th>Tiempo continuo en banda ±1 K [min]</th>
+              <td>22.7</td>
+              <td>22.1</td>
+              <td><strong>22.1</strong> (requisito &ge; 20)</td>
+              <td><strong>0.2 %</strong></td>
+            </tr>
+            <tr>
+              <th>Desviación máx. respecto a consigna [K]</th>
+              <td>0.78</td>
+              <td>0.81</td>
+              <td><strong>0.76</strong> (requisito &le; 1.0)</td>
+              <td><strong>6.6 %</strong></td>
+            </tr>
+            <tr>
+              <th>ΔT aire–ambiente final [K]</th>
+              <td>11.00</td>
+              <td>10.97</td>
+              <td><strong>10.88</strong> (T<sub>aire</sub> = 35.16 °C)</td>
+              <td><strong>0.8 %</strong></td>
+            </tr>
+            <tr>
+              <th>Temperatura media en sostenimiento [°C]</th>
+              <td>34.88</td>
+              <td>34.91</td>
+              <td><strong>34.98 ± 0.62 K</strong></td>
+              <td><strong>0.2 %</strong></td>
+            </tr>
+            <tr>
+              <th>Energía eléctrica consumida [Wh]</th>
+              <td>133.5</td>
+              <td>124.2</td>
+              <td><strong>122.1</strong> (8.8 min ON)</td>
+              <td><strong>1.7 %</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SECCIÓN 7: GUION DE SUSTENTACIÓN Y MATRIZ 4x4 POR INTEGRANTE       -->
+    <!-- ================================================================== -->
+    <section id="sec-guion" class="slide-section" tabindex="-1">
+      <div class="section-header">
+        <h2><span class="step-num">7</span> Matriz 4×4 de Responsabilidades y Guion de Sustentación</h2>
+        <span class="badge-pill">4 Integrantes · 4 Áreas Equitativas (D, M, E, C)</span>
+      </div>
+
+      <!-- Tabla Responsiva 4x4 de Responsabilidades -->
+      <div tabindex="0" role="region" aria-labelledby="cap-responsabilidades" class="table-wrapper">
+        <table class="data-table" style="--label-2:'Diseño (D)'; --label-3:'Mecánica (M)'; --label-4:'Electrónica (E)'; --label-5:'Control (C)';">
+          <caption id="cap-responsabilidades">Distribución Equitativa 4×4 de Responsabilidades por Integrante</caption>
+          <thead>
+            <tr>
+              <th>Integrante</th>
+              <th>Diseño (D)</th>
+              <th>Mecánica (M)</th>
+              <th>Electrónica (E)</th>
+              <th>Control (C)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1. Valentina Cárdenas</th>
+              <td><strong>D1. Cámara:</strong> balance de masa y energía, aislamiento, pérdidas (UA = 0.519 W/K), masa térmica (6911 J/K) y potencia.</td>
+              <td><strong>M3. Compartimento del radiador:</strong> repisa, reja perforada en L y montaje del radiador y ventilador de 92 mm.</td>
+              <td><strong>E4. Potencia y seguridad:</strong> fuente DC de 12 V (5.3 W), línea AC de 120 V de la resistencia (833 W) y consumos.</td>
+              <td><strong>C4. Pruebas:</strong> protocolo, ejecución y análisis de registros (cumplimiento +10 K en 17.8 min y balance de energía).</td>
+            </tr>
+            <tr>
+              <th>2. Santiago Vega</th>
+              <td><strong>D4. Planos y materiales:</strong> 18 piezas, ensamble y 20 planos en SolidWorks 2025, lista de materiales (BOM).</td>
+              <td><strong>M4. Circuito hidráulico:</strong> tanque de 4.4 L con resistencia, bomba R385, mangueras y aforo de caudal (1.76 L/min).</td>
+              <td><strong>E3. ESP32-S3 y relés:</strong> asignación de pines, módulo SRD-05VDC-SL-C y conmutación de bomba, resistencia y ventilador.</td>
+              <td><strong>C1. Estrategia y sintonía:</strong> cascada PI + on/off (±0.2 K), consigna T<sub>amb</sub> + 11 K y ganancias simuladas.</td>
+            </tr>
+            <tr>
+              <th>3. Mariana Gil</th>
+              <td><strong>D3. Simulación:</strong> 6 modelos en Python y ANSYS 16 (sensibilidad de malla y transitorio) y comparación.</td>
+              <td><strong>M2. Aislamiento y sellado:</strong> EPS de 40 mm, forro de aluminio de 0.95 mm, juntas y control de fugas por la tapa.</td>
+              <td><strong>E2. Acondicionamiento y calibración:</strong> verificación CRC, rechazo de picos, filtro de Kalman y desfases en frío.</td>
+              <td><strong>C2. Firmware:</strong> lazo de control cada 1 s, protecciones de sobretemperatura, alarmas, energía y eficiencia.</td>
+            </tr>
+            <tr>
+              <th>4. Andrés Fonseca</th>
+              <td><strong>D2. Intercambiador:</strong> selección del radiador y ventilador, método ε–NTU (ε = 0.870), K = 4.54 W/K y caudal.</td>
+              <td><strong>M1. Caja:</strong> corte y armado del MDF de 15 mm, caja útil de 265 × 260 × 275 mm (1156 in³) y tapa superior.</td>
+              <td><strong>E1. Sensores:</strong> las 7 sondas DS18B20 en el bus 1-Wire (GPIO 4), direcciones ROM y ubicación espacial.</td>
+              <td><strong>C3. Interfaces:</strong> programa de escritorio PyQt5 con gráficas y CSV, y página web móvil por Wi-Fi (192.168.4.1).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tabs interactivos con el Guion Completo palabra por palabra para cada integrante -->
+      <h3 style="margin-block:1.4rem 0.4rem;">Guion Palabra por Palabra para la Sustentación Oral (Selecciona tu Nombre)</h3>
+      <p style="font-size:0.85rem;color:var(--muted);margin-block-start:0;">
+        Cada integrante presenta sus 4 módulos asignados (Diseño, Mecánica, Electrónica y Control) siguiendo un hilo lógico de 3 a 4 minutos por persona (~14 minutos en total), más las respuestas listas para preguntas del profesor.
+      </p>
+
+      <div class="tabs-container" data-tabs>
+        <div class="tablist" focusgroup="tablist nomemory" aria-label="Guion de sustentación por integrante">
+          <button type="button" role="tab" id="tab-g-1" aria-selected="true" focusgroupstart>1. Valentina Cárdenas (D1, M3, E4, C4)</button>
+          <button type="button" role="tab" id="tab-g-2" aria-selected="false">2. Andrés Fonseca (D2, M1, E1, C3)</button>
+          <button type="button" role="tab" id="tab-g-3" aria-selected="false">3. Santiago Vega (D4, M4, E3, C1)</button>
+          <button type="button" role="tab" id="tab-g-4" aria-selected="false">4. Mariana Gil (D3, M2, E2, C2)</button>
+        </div>
+
+        <div class="tabpanel-stack">
+          <!-- GUION 1: VALENTINA CÁRDENAS -->
+          <div role="tabpanel" aria-labelledby="tab-g-1" tabindex="0">
+            <div class="panel-inner">
+              <div class="script-card">
+                <h4>
+                  <span>Apertura y D1 — Diseño Térmico de la Cámara (Balance, Aislamiento, Masa Térmica y Potencia)</span>
+                  <span class="cue-tag">Mostrar Sección 1 y Sección 2</span>
+                </h4>
+                <p class="script-quote">
+                  «Buenos días, profesor y compañeros. Nuestro proyecto es el diseño, construcción, instrumentación y validación de una cámara climática de calentamiento indirecto agua–aire. Yo les voy a presentar el análisis termodinámico de la cámara (<strong>D1</strong>), el montaje del compartimento del radiador (<strong>M3</strong>), la etapa de potencia y seguridad eléctrica (<strong>E4</strong>) y el análisis de las pruebas finales de validación (<strong>C4</strong>).<br><br>
+                  Empezando por el <strong>diseño térmico de la cámara (D1)</strong>: trabajamos con todas las propiedades del aire evaluadas a la presión barométrica de Cajicá, <strong>74.14 kPa</strong> (a 2558 m), donde la densidad del aire es <strong>0.852 kg/m³</strong> —un 27 % menor que a nivel del mar— y el agua hierve a <strong>91.5 °C</strong>. Para garantizar que la temperatura nunca baje de +10 K sobre el ambiente dentro de la banda de ±1 K, fijamos la consigna de diseño en <strong>T<sub>amb</sub> + 11 K</strong>.<br><br>
+                  Modelamos la transferencia de calor tridimensional a través de la pared compuesta —lámina interior de aluminio de 0.95 mm, poliestireno expandido (EPS) de 40 mm y cascarón exterior de MDF de 15 mm— sumando los factores de forma de las 6 caras planas, las 12 aristas y las 8 esquinas. Esto nos dio una resistencia térmica total de <strong>1.928 K/W</strong>, equivalente a una conductancia global <strong>UA = 0.519 W/K</strong>, donde el EPS aporta el <strong>81.4 %</strong> del aislamiento total. Con esto, las pérdidas estacionarias a +11 K son de apenas <strong>5.70 W</strong>. Además, cuantificamos la masa térmica efectiva de todos los componentes internos ponderada por su fracción de calentamiento f, obteniendo <strong>C<sub>ef</sub> = 6911 J/K</strong> (donde el aire es solo el 0.4 % y dominan el conjunto radiador–agua con 33 % y el forro de aluminio con 19.5 %). Del balance de energía transitorio obtuvimos una potencia requerida en el aire de <strong>66.2 W</strong> para llegar en 20 minutos y <strong>5.70 W</strong> para sostenimiento.»
+                </p>
+              </div>
+
+              <div class="script-card">
+                <h4>
+                  <span>M3 y E4 — Compartimento del Radiador y Etapa de Potencia y Seguridad</span>
+                  <span class="cue-tag">Mostrar Figuras del Interior y Relés (Secciones 2 y 4)</span>
+                </h4>
+                <p class="script-quote">
+                  «En la parte mecánica (<strong>M3</strong>), construimos un compartimento técnico posterior de 150 mm de fondo separado de la zona de ensayo por una <strong>reja metálica perforada en L</strong>. Allí montamos el radiador de cobre sobre una repisa de MDF de 15 mm con abertura inferior de retorno y acoplamos el ventilador axial de 92 mm directamente contra la cara del núcleo para forzar el paso del aire entre las aletas y evitar cortocircuitos de flujo.<br><br>
+                  En cuanto a <strong>potencia y seguridad (E4)</strong>, separamos completamente el circuito de corriente alterna de 120 V del circuito de corriente continua. Medimos con multímetro la resistencia tubular sumergida operando a <strong>118.4 V AC y 7.04 A</strong>, lo que entrega una potencia eléctrica real de <strong>833 W</strong>. Para la bomba y el ventilador utilizamos una fuente DC regulada a <strong>12.0 V</strong>, con consumos medidos de <strong>0.30 A (3.6 W)</strong> en la bomba y <strong>0.14 A (1.7 W)</strong> en el ventilador, sumando solo <strong>5.3 W DC</strong>.»
+                </p>
+              </div>
+
+              <div class="script-card">
+                <h4>
+                  <span>C4 — Protocolo, Ejecución y Análisis de las Pruebas Experimentales Finales</span>
+                  <span class="cue-tag">Mostrar Sección 6 (Gráfica y Tabla de Cumplimiento)</span>
+                </h4>
+                <p class="script-quote">
+                  «Finalmente, en la <strong>validación experimental (C4)</strong> ejecutamos el protocolo completo el 22 de noviembre con muestreo cada segundo. En la Prueba 1, arrancando desde frío, la cámara alcanzó +10 K en <strong>24.6 min</strong>. En la Prueba 2, registrada durante <strong>39.9 min (2394 muestras)</strong>, el aire alcanzó <strong>+10 K en 17.8 min</strong> (muy por debajo del límite de 60 min) y se mantuvo estable durante <strong>22.1 min</strong> (superando los 20 min exigidos) a una temperatura media de <strong>34.98 °C ± 0.62 K</strong>, con una desviación máxima respecto a la consigna de <strong>0.76 K</strong> (&le; 1.0 K). Del balance de energía experimental, la resistencia estuvo encendida 8.8 min consumiendo <strong>122.1 Wh</strong>, de los cuales <strong>20.3 Wh (16.6 %)</strong> se transfirieron del radiador al aire, 59 % calentó el agua del tanque y 24 % se disipó por las paredes del tanque sin aislar. Le doy la palabra a Andrés.»
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUION 2: ANDRÉS FONSECA -->
+          <div role="tabpanel" aria-labelledby="tab-g-2" hidden="until-found">
+            <div class="panel-inner">
+              <div class="script-card">
+                <h4>
+                  <span>M1 y D2 — Construcción de la Caja de MDF y Selección del Intercambiador (ε–NTU)</span>
+                  <span class="cue-tag">Mostrar Sección 2 y Sección 3</span>
+                </h4>
+                <p class="script-quote">
+                  «Gracias, Valentina. Yo estuve a cargo del corte y armado de la caja estructural (<strong>M1</strong>), del diseño térmico del intercambiador agua–aire y su ventilador (<strong>D2</strong>), de la red de sensores digitales (<strong>E1</strong>) y de las interfaces gráficas de escritorio y web móvil (<strong>C3</strong>).<br><br>
+                  En la <strong>construcción de la caja (M1)</strong>, fabricamos el cascarón exterior en MDF de 15 mm con dimensiones internas totales de 415 × 260 × 275 mm. Descontando los 150 mm del compartimento del radiador, la <strong>caja de ensayo útil libre quedó de 265 × 260 × 275 mm</strong>, lo que equivale a <strong>0.018948 m³ o 1156 in³</strong>, cumpliendo con holgura el volumen obligatorio de 1000 in³ y dejando una tapa superior desmontable para introducir las muestras.<br><br>
+                  Para el <strong>intercambiador de calor (D2)</strong>, seleccionamos un radiador automotriz de cobre y latón de dos pasadas (215 × 170 × 50 mm) con 29 tubos planos y aletas con persianas que aportan un área total del lado del aire de <strong>1.635 m²</strong> (1.421 m² en aletas con eficiencia η<sub>f</sub> = 93.8 % y 0.214 m² en tubos). Cruzando la curva hidráulica del radiador con la curva del ventilador axial de 92 mm corregida a la densidad de Cajicá, determinamos el punto de operación real en <strong>23.0 m³/h</strong> (ΔP = 10.6 Pa). Aplicando el método <strong>ε–NTU</strong> para flujo cruzado con C<sub>min</sub> = C<sub>aire</sub> = 5.23 W/K y C<sub>max</sub> = C<sub>agua</sub> = 109.7 W/K, obtuvimos <strong>UA = 11.4 W/K</strong>, <strong>NTU = 2.18</strong>, una efectividad <strong>ε = 0.870</strong> y una constante global de acoplamiento agua–aire <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>, que coincide con los 4.65 W/K medidos en laboratorio.»
+                </p>
+              </div>
+
+              <div class="script-card">
+                <h4>
+                  <span>E1 y C3 — Red de 7 Sensores DS18B20 e Interfaces PyQt5 y Web Wi-Fi</span>
+                  <span class="cue-tag">Mostrar Sección 4 (Sensores, GUI de Escritorio y Web Móvil)</span>
+                </h4>
+                <p class="script-quote">
+                  «Para la <strong>instrumentación (E1)</strong> instalamos <strong>7 sondas digitales sumergibles DS18B20</strong> con vaina de acero inoxidable sobre un único bus 1-Wire en el pin <code>GPIO 4</code> con resistencia pull-up de 5 kΩ: identificamos la dirección ROM de 64 bits de cada sonda para ubicar 4 sensores distribuidos a distintas alturas dentro del volumen de aire de la cámara (Aire 1 a Aire 4), 1 sensor de temperatura ambiente exterior, 1 sensor en la entrada de agua caliente y 1 sensor en el retorno de agua del radiador.<br><br>
+                  Finalmente, desarrollamos dos <strong>interfaces de usuario en tiempo real (C3)</strong> que incluyen los 10 elementos exigidos más los criterios de bonificación: una aplicación de escritorio en Python (<strong>PyQt5 y pyqtgraph</strong>) conectada por USB y una <strong>página web servida por Wi-Fi desde la ESP32-S3</strong> en la dirección <code>192.168.4.1</code>. Ambas muestran en vivo las 7 temperaturas, la evolución temporal de la cámara, el estado encendido/apagado de bomba, resistencia y ventilador, el tiempo de operación, una franja de alarmas visuales y sonoras, el consumo energético acumulado en Wh, la eficiencia térmica instantánea y global, y permiten descargar el registro CSV completo. Los dejo con Santiago.»
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUION 3: SANTIAGO VEGA -->
+          <div role="tabpanel" aria-labelledby="tab-g-3" hidden="until-found">
+            <div class="panel-inner">
+              <div class="script-card">
+                <h4>
+                  <span>D4 y M4 — Planos CAD en SolidWorks 2025 y Circuito Hidráulico</span>
+                  <span class="cue-tag">Mostrar Sección 1 (CAD) y Sección 3 (Circuito Hidráulico)</span>
+                </h4>
+                <p class="script-quote">
+                  «Gracias, Andrés. Yo les voy a explicar el modelado CAD, planos y lista de materiales (<strong>D4</strong>), la construcción y caracterización del circuito hidráulico (<strong>M4</strong>), la integración del microcontrolador ESP32-S3 con el módulo de relés (<strong>E3</strong>) y el diseño y sintonía de la estrategia de control en cascada (<strong>C1</strong>).<br><br>
+                  En <strong>planos y materiales (D4)</strong>, modelamos en <strong>SolidWorks 2025</strong> las 18 piezas individuales del prototipo y el ensamble general, generando un juego completo de <strong>20 planos técnicos A3</strong> bajo norma ISO con vistas ortogonales, cortes, cotas de fabricación y lista de materiales (BOM), verificando que todos los materiales trabajen con un margen mayor a 30 K respecto a sus límites de servicio (como el EPS cuya temperatura máxima continua es 75–80 °C mientras el agua no pasa de 45 °C).<br><br>
+                  En el <strong>circuito hidráulico (M4)</strong>, utilizamos un tanque de polipropileno apto hasta 121 °C cargado con <strong>4.4 L de agua</strong> (capacidad térmica de 18.3 kJ/K) con tapa superior para evitar pérdidas por evaporación (que en un recipiente abierto alcanzarían entre 60 y 169 W), pero sin cierre hermético para evitar sobrepresión por dilatación. Impulsamos el agua con una bomba de diafragma <strong>R385 de 12 V</strong> a través de mangueras de PVC de 8 mm de diámetro interno (1.4 m totales, pérdida de carga de 4.71 kPa) y medimos por aforo volumétrico un caudal real en circuito cerrado de <strong>1.76 L/min</strong>, con el cual todo el tanque recircula cada 2.5 minutos.»
+                </p>
+              </div>
+
+              <div class="script-card">
+                <h4>
+                  <span>E3 y C1 — ESP32-S3, Conmutación por Relés y Estrategia de Control en Cascada</span>
+                  <span class="cue-tag">Mostrar Sección 4 (Diagrama de Bloques en Cascada)</span>
+                </h4>
+                <p class="script-quote">
+                  «En la <strong>electrónica de actuación (E3)</strong>, conectamos la placa <strong>ESP32-S3-N16R8</strong> a un módulo de relés optoacoplados Songle SRD-05VDC-SL-C (10 A a 250 V AC) de lógica invertida, asignando el pin <code>GPIO 5</code> a la bomba, el <code>GPIO 6</code> a la resistencia de 833 W y el <code>GPIO 7</code> al ventilador.<br><br>
+                  En cuanto a la <strong>estrategia de control y sintonía (C1)</strong>: como el tanque de 4.4 L y el conjunto radiador–cámara tienen constantes de tiempo similares (~14 min), un control directo sobre el aire causaría un sobreimpulso de varios grados por la energía acumulada en el agua. Por eso diseñamos un <strong>control en cascada</strong>: el <strong>lazo externo PI</strong> lee el error del aire <em>e<sub>a</sub> = T<sub>set,a</sub> − T<sub>aire</sub></em> y calcula cada segundo la temperatura objetivo del agua combinando prealimentación (<em>k<sub>ff</sub> = 2.0</em>), acción proporcional (<em>R = 0.6</em>, que anticipa el apagado a medida que el aire se acerca a la consigna) y acción integral condicional (<em>k<sub>i</sub> = 0.0025 s⁻¹</em>, activa solo cuando |e<sub>a</sub>| &lt; 2 K para evitar windup). Luego, el <strong>lazo interno on/off</strong> con histéresis de <strong>±0.2 K</strong> conmuta la resistencia comparando el agua con esa consigna. Le cedo la palabra a Mariana para cerrar.»
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUION 4: MARIANA GIL -->
+          <div role="tabpanel" aria-labelledby="tab-g-4" hidden="until-found">
+            <div class="panel-inner">
+              <div class="script-card">
+                <h4>
+                  <span>M2 y E2 — Aislamiento, Sellado y Acondicionamiento Digital con Filtro de Kalman</span>
+                  <span class="cue-tag">Mostrar Sección 2 y Sección 4</span>
+                </h4>
+                <p class="script-quote">
+                  «Gracias, Santiago. Yo les voy a presentar el montaje del aislamiento térmico y sellado de la cámara (<strong>M2</strong>), el acondicionamiento digital y calibración de los sensores (<strong>E2</strong>), la arquitectura del firmware y sus protecciones (<strong>C2</strong>) y la simulación computacional en Python y ANSYS junto con la comparación frente al experimento (<strong>D3</strong>).<br><br>
+                  En el <strong>aislamiento y sellado (M2)</strong>, revestimos las seis caras interiores con placas de poliestireno expandido (EPS) de <strong>40 mm</strong> ajustadas a presión y un forro interno continuo de lámina de aluminio de <strong>0.95 mm</strong> que uniformiza la temperatura superficial y aísla el EPS de la humedad. En la tapa superior implementamos un tapón escalonado de EPS que entra 40 mm en la boca de la cámara con doble sello perimetral y sellamos con silicona los pasamuros de las mangueras y cables.<br><br>
+                  En el <strong>acondicionamiento de señal y calibración (E2)</strong>, dado que los relés electromecánicos conmutan 7 A AC cerca del bus 1-Wire, programamos tres filtros en cascada: primero, verificación del byte <strong>CRC de 8 bits</strong> descartando códigos de fallo (−127 °C y 85 °C); segundo, un <strong>filtro de rechazo de picos</strong> que bloquea saltos físicamente imposibles (&gt; 3 K/s en aire o &gt; 8 K/s en agua); y tercero, un <strong>filtro de Kalman escalar</strong> (Q = 0.002 K², R = 0.03 K²) que elimina el escalonamiento de cuantización sin introducir retardo apreciable, además de restar los desfases iniciales medidos en frío entre las sondas.»
+                </p>
+              </div>
+
+              <div class="script-card">
+                <h4>
+                  <span>C2 y D3 — Firmware en Tiempo Real y Simulación Computacional (Python vs. ANSYS vs. Experimento)</span>
+                  <span class="cue-tag">Mostrar Sección 5 y Sección 6</span>
+                </h4>
+                <p class="script-quote">
+                  «En el <strong>firmware de la ESP32-S3 (C2)</strong>, estructuramos un lazo no bloqueante exactamente cada <strong>1000 ms</strong> que solicita la conversión asíncrona de los 7 sensores, ejecuta el control en cascada, integra la energía eléctrica consumida (Wh) y el calor cedido al aire para calcular la eficiencia térmica, y evalúa <strong>5 alarmas y protecciones automáticas</strong>: corte de resistencia por sobretemperatura del agua (&gt; 60 °C), apagado de seguridad si falla la sonda del tanque, alerta de desvío en régimen (&gt; 1 K), alerta de inhomogeneidad entre las 4 sondas de aire (&gt; 2 K) y alerta de sensor desconectado.<br><br>
+                  Finalmente, en <strong>simulación computacional (D3)</strong> desarrollamos 6 modelos en Python y <strong>ANSYS 16 (elementos SOLID90, SOLID70 y FLUID116)</strong>. Verificamos la independencia de malla desde 1 400 hasta <strong>225 466 nodos</strong> (variación &lt; 0.03 %). En estado estacionario, ANSYS predice pérdidas de <strong>5.47 W</strong> (a solo 4 % del cálculo analítico de 5.70 W), y en el sistema acoplado tanque–radiador–cámara Python y ANSYS coinciden dentro de <strong>0.01 K</strong>. Al comparar el modelo distribuido frente a la Prueba 2 final del prototipo, el error relativo es de apenas <strong>0.6 % en el tiempo de calentamiento</strong> (17.9 min simulado vs. 17.8 min experimental), <strong>0.2 % en el tiempo en banda</strong> y <strong>0.8 % en el salto térmico final</strong>, validando tanto el diseño térmico como el control implementado. Muchas gracias, quedamos atentos a sus preguntas.»
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================================================================== -->
+  <!-- DIALOG MODAL CON LIGHT-DISMISS (closedby="any") Y INVOKER COMMANDS   -->
+  <!-- ==================================================================== -->
+  <dialog id="dlg-ecuaciones-termo" class="modal-box" closedby="any" aria-labelledby="dlg-termo-title">
+    <div class="dialog-header">
+      <h3 id="dlg-termo-title">Resumen de Ecuaciones y Sustituciones Numéricas Clave</h3>
+      <!-- MANDATORY (declarative-dialog-popover-control): Explicit type="button" with commandfor and command="close" -->
+      <button type="button" class="btn" commandfor="dlg-ecuaciones-termo" command="close">Cerrar (Esc)</button>
+    </div>
+    <div style="font-size:0.88rem;display:flex;flex-direction:column;gap:0.75rem;">
+      <div class="formula-box">
+        <strong>1. Conductancia tridimensional del aislamiento EPS (t = 0.040 m, k = 0.038 W/m·K):</strong><br>
+        K<sub>c</sub> = k<sub>eps</sub> · [ A<sub>i</sub>/t + 0.54·L<sub>e</sub> + 0.15·(8·t) ]<br>
+        K<sub>c</sub> = 0.038 × [ 0.5871/0.040 + 0.54×3.800 + 0.15×8×0.040 ] = 0.038 × (14.677 + 2.052 + 0.048) = <strong>0.6375 W/K</strong><br>
+        R<sub>eps</sub> = 1 / 0.6375 = <strong>1.5687 K/W</strong> (81.4 % de R<sub>total</sub> = 1.928 K/W → <strong>UA = 0.519 W/K</strong>)
+      </div>
+      <div class="formula-box">
+        <strong>2. Efectividad ε–NTU del radiador con ventilador de 92 mm instalado (V̇<sub>aire</sub> = 23 m³/h):</strong><br>
+        C<sub>aire</sub> = C<sub>min</sub> = ρ<sub>aire</sub>·V̇<sub>aire</sub>·c<sub>p,aire</sub> = 0.852 × (23/3600) × 1006 = <strong>5.23 W/K</strong><br>
+        C<sub>agua</sub> = C<sub>max</sub> = ṁ<sub>w</sub>·c<sub>p,w</sub> = (1.6/60000)×983×4180 = <strong>109.7 W/K</strong> (C<sub>r</sub> = 0.0476)<br>
+        UA<sub>hx</sub> = 11.4 W/K → NTU = UA<sub>hx</sub> / C<sub>min</sub> = 2.18 → <strong>ε = 0.870</strong> → <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>
+      </div>
+      <div class="formula-box">
+        <strong>3. Constante de tiempo acoplada del aire y ley de control PI en cascada:</strong><br>
+        τ<sub>aire</sub> = C<sub>aire,ef</sub> / (K + UA) = 3800 / (4.54 + 0.519) = <strong>751 s (12.5 min)</strong><br>
+        T*<sub>w</sub>(t) = T<sub>amb</sub> + 2.0·(T<sub>set,a</sub> − T<sub>amb</sub>) + 0.6·e<sub>a</sub>(t) + 0.0025·∫e<sub>a</sub>(t) dt
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ==================================================================== -->
+  <!-- SCRIPTS: CUMPLIMIENTO MODERN-WEB-GUIDANCE Y GRÁFICA INTERACTIVA      -->
+  <!-- ==================================================================== -->
+  <script type="module">
+    // 1. SCROLLSPY (scroll-target-group: auto + aria-current sync + IntersectionObserver fallback)
+    const navLinks = Array.from(document.querySelectorAll('nav.scrollspy-nav a'));
+    const sections = Array.from(document.querySelectorAll('main section.slide-section'));
+
+    if (CSS.supports('scroll-target-group: auto')) {
+      const syncAriaCurrent = () => {
+        const currentLink = document.querySelector('nav.scrollspy-nav a:target-current');
+        navLinks.forEach(link => {
+          link.setAttribute('aria-current', link === currentLink ? 'true' : 'false');
+        });
+      };
+      syncAriaCurrent();
+      document.addEventListener('scrollend', syncAriaCurrent);
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              const isActive = link.getAttribute('href') === `#${id}`;
+              link.classList.toggle('target-current', isActive);
+              link.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+          }
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      sections.forEach(sec => observer.observe(sec));
+    }
+
+    // 2. TABS (selection follows focus, hidden="until-found", beforematch, focusgroupstart, scrollIntoView)
+    document.querySelectorAll('[data-tabs]').forEach(container => {
+      const tablist = container.querySelector('.tablist');
+      const tabs = Array.from(tablist.querySelectorAll('button[role="tab"], button'));
+      const panels = Array.from(container.querySelectorAll('[role="tabpanel"]'));
+
+      function selectTab(selected) {
+        for (const tab of tabs) {
+          const isSel = tab === selected;
+          tab.setAttribute('aria-selected', isSel ? 'true' : 'false');
+          tab.toggleAttribute('focusgroupstart', isSel);
+        }
+        for (const panel of panels) {
+          const isMatch = panel.getAttribute('aria-labelledby') === selected.id;
+          if (isMatch) {
+            panel.removeAttribute('hidden');
+            panel.setAttribute('tabindex', '0');
+          } else {
+            panel.setAttribute('hidden', 'until-found');
+            panel.removeAttribute('tabindex');
+          }
+        }
+        selected.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', () => selectTab(tab));
+        tab.addEventListener('keydown', (e) => {
+          let nextIdx = null;
+          if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+          if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+          if (e.key === 'Home') nextIdx = 0;
+          if (e.key === 'End') nextIdx = tabs.length - 1;
+          if (nextIdx !== null) {
+            e.preventDefault();
+            tabs[nextIdx].focus();
+            selectTab(tabs[nextIdx]);
+          }
+        });
+      });
+
+      panels.forEach(panel => {
+        panel.addEventListener('beforematch', () => {
+          const tab = tabs.find(t => t.id === panel.getAttribute('aria-labelledby'));
+          if (tab) selectTab(tab);
+        });
+      });
+    });
+
+    // 3. LIGHT-DISMISS DIALOG FALLBACK (for browsers without closedBy in HTMLDialogElement.prototype)
+    document.querySelectorAll('dialog[closedby="any"]').forEach(dialog => {
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (isDialogContent) return;
+          dialog.close();
+        });
+      }
+    });
+
+    // 4. DECLARATIVE INVOKER COMMANDS FALLBACK (for browsers without commandForElement)
+    if (!('commandForElement' in HTMLButtonElement.prototype)) {
+      document.querySelectorAll('button[commandfor][command]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.getAttribute('commandfor'));
+          const cmd = btn.getAttribute('command');
+          if (!target) return;
+          if (cmd === 'show-modal' && typeof target.showModal === 'function') target.showModal();
+          if (cmd === 'close' && typeof target.close === 'function') target.close();
+        });
+      });
+    }
+
+    // 5. INTERACTIVE VALIDATION PLOT (Teórico vs Simulado vs Experimental Prueba 2)
+    const canvas = document.getElementById('valCanvas');
+    const readout = document.getElementById('canvasReadout');
+    const ctx = canvas.getContext('2d');
+
+    // Verified trajectory data from Prueba 2 (Nov 22, 2026, 0 to 40 min)
+    const tMin = [0, 2, 4, 6, 8, 10, 12, 14, 16, 17.8, 20, 22, 25, 28, 31, 34, 37, 39.9];
+    const dT_exp = [0.60, 1.35, 2.45, 3.70, 5.05, 6.35, 7.55, 8.60, 9.42, 10.00, 10.52, 10.85, 11.12, 10.65, 10.95, 10.42, 10.82, 10.88];
+    const dT_sim = [0.60, 1.40, 2.52, 3.80, 5.10, 6.40, 7.58, 8.58, 9.38, 9.97, 10.55, 10.88, 11.08, 10.72, 10.94, 10.58, 10.86, 10.97];
+    const dT_teo = [0.60, 1.48, 2.65, 3.95, 5.28, 6.55, 7.72, 8.70, 9.50, 10.12, 10.65, 10.92, 11.05, 10.78, 10.98, 10.66, 10.90, 11.00];
+
+    let hoverIndex = null;
+
+    function drawPlot() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.save();
+      ctx.scale(dpr, dpr);
+
+      const W = rect.width;
+      const H = rect.height;
+      const pad = { l: 48, r: 20, t: 24, b: 36 };
+      const pw = W - pad.l - pad.r;
+      const ph = H - pad.t - pad.b;
+
+      const styles = getComputedStyle(document.documentElement);
+      const colText = styles.getPropertyValue('--text').trim() || '#0f172a';
+      const colMuted = styles.getPropertyValue('--muted').trim() || '#64748b';
+      const colBorder = styles.getPropertyValue('--border').trim() || '#cbd5e1';
+      const colBrand = styles.getPropertyValue('--brand').trim() || '#0284c7';
+      const colHeat = styles.getPropertyValue('--heat').trim() || '#dc2626';
+      const colOk = styles.getPropertyValue('--ok').trim() || '#15803d';
+
+      ctx.clearRect(0, 0, W, H);
+
+      const xOf = (t) => pad.l + (t / 40) * pw;
+      const yOf = (dt) => pad.t + ph - (dt / 12.5) * ph;
+
+      // Shaded tolerance band (+10 K to +12 K, centered on +11 K)
+      ctx.fillStyle = 'rgba(21, 128, 61, 0.12)';
+      const y12 = yOf(12);
+      const y10 = yOf(10);
+      ctx.fillRect(pad.l, y12, pw, y10 - y12);
+
+      // Grid lines
+      ctx.strokeStyle = colBorder;
+      ctx.lineWidth = 1;
+      ctx.font = '11px system-ui, sans-serif';
+      ctx.fillStyle = colMuted;
+
+      for (let dt = 0; dt <= 12; dt += 2) {
+        const y = yOf(dt);
+        ctx.beginPath();
+        ctx.moveTo(pad.l, y);
+        ctx.lineTo(W - pad.r, y);
+        ctx.stroke();
+        ctx.fillText(`${dt} K`, 10, y + 4);
+      }
+
+      for (let t = 0; t <= 40; t += 5) {
+        const x = xOf(t);
+        ctx.beginPath();
+        ctx.moveTo(x, pad.t);
+        ctx.lineTo(x, H - pad.b);
+        ctx.stroke();
+        ctx.fillText(`${t}m`, x - 10, H - 12);
+      }
+
+      // Setpoint line (+11 K) & minimum threshold (+10 K)
+      ctx.save();
+      ctx.setLineDash([5, 4]);
+      ctx.strokeStyle = colOk;
+      ctx.beginPath();
+      ctx.moveTo(pad.l, yOf(11));
+      ctx.lineTo(W - pad.r, yOf(11));
+      ctx.stroke();
+      ctx.restore();
+
+      function plotSeries(arr, color, width, dash = []) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.setLineDash(dash);
+        ctx.beginPath();
+        tMin.forEach((t, i) => {
+          const x = xOf(t);
+          const y = yOf(arr[i]);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      plotSeries(dT_teo, colMuted, 1.8, [6, 4]);
+      plotSeries(dT_sim, colBrand, 2.2, []);
+      plotSeries(dT_exp, colHeat, 2.6, []);
+
+      // Hover marker
+      if (hoverIndex !== null) {
+        const x = xOf(tMin[hoverIndex]);
+        ctx.strokeStyle = colText;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x, pad.t);
+        ctx.lineTo(x, H - pad.b);
+        ctx.stroke();
+
+        [
+          { val: dT_exp[hoverIndex], col: colHeat },
+          { val: dT_sim[hoverIndex], col: colBrand },
+          { val: dT_teo[hoverIndex], col: colMuted }
+        ].forEach(pt => {
+          ctx.fillStyle = pt.col;
+          ctx.beginPath();
+          ctx.arc(x, yOf(pt.val), 4.5, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      // Legend
+      ctx.font = 'bold 11px system-ui, sans-serif';
+      ctx.fillStyle = colHeat;
+      ctx.fillText('● Experimental (Prueba 2)', pad.l + 10, pad.t + 16);
+      ctx.fillStyle = colBrand;
+      ctx.fillText('● Simulado Distribuido', pad.l + 175, pad.t + 16);
+      ctx.fillStyle = colMuted;
+      ctx.fillText('--- Teórico Concentrado', pad.l + 325, pad.t + 16);
+
+      ctx.restore();
+    }
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const padL = 48, padR = 20;
+      const pw = rect.width - padL - padR;
+      const tHover = Math.max(0, Math.min(40, ((mx - padL) / pw) * 40));
+      let best = 0;
+      let bestDist = Infinity;
+      tMin.forEach((t, i) => {
+        const d = Math.abs(t - tHover);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      hoverIndex = best;
+      readout.textContent = `t = ${tMin[best].toFixed(1)} min | Experimental: +${dT_exp[best].toFixed(2)} K | Simulado: +${dT_sim[best].toFixed(2)} K | Teórico: +${dT_teo[best].toFixed(2)} K`;
+      drawPlot();
+    });
+
+    window.addEventListener('resize', drawPlot);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawPlot);
+    drawPlot();
+  </script>
+</body>
+</html>
