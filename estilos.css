@@ -54,6 +54,7 @@ strong{font-weight:700}
 .hero .eyebrow span{inline-size:1.6rem;block-size:1px;background:currentColor}
 .hero h1{font-size:clamp(3.35rem, 2rem + 5.2vw, 7.5rem);letter-spacing:-.078em;line-height:.9;margin:.14em 0 .24em;font-weight:700;text-wrap:initial}
 .hero h1 em{color:var(--accent);font-style:normal}
+.hero-title-detail{display:block;margin-block-start:.75rem;font-size:clamp(1.35rem,1rem + 1.25vw,2rem);letter-spacing:-.025em;line-height:1.15;text-wrap:balance}
 .hero-summary{max-inline-size:35ch;font-size:clamp(1rem, .87rem + .55vw, 1.23rem);color:#d7d4d0;margin-block-end:1.65rem}
 .hero-actions{display:flex;flex-wrap:wrap;gap:.65rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:2.8rem;padding:.55rem 1rem;border:1px solid var(--border);border-radius:.48rem;color:var(--text);background:var(--surface);text-decoration:none;font-size:.92rem;font-weight:700}
@@ -132,6 +133,7 @@ strong{font-weight:700}
 .spec-strip dd{font-family:var(--heading);font-weight:700;font-size:1.12rem}
 .diagram-wrap{overflow:auto}
 .diagram{min-inline-size:47rem;inline-size:100%;display:block;block-size:auto;background:var(--paper);border-radius:.4rem}
+.tabs-container{min-inline-size:0}
 .tablist{display:flex;gap:.45rem;overflow-x:auto;scrollbar-width:thin;border-block-end:1px solid var(--border);margin-block-end:1rem}
 .tablist button{position:relative;min-height:2.75rem;flex:none;padding:.55rem .8rem;background:transparent;border:0;border-block-end:3px solid transparent;color:var(--muted);font-size:.9rem;font-weight:600}
 .tablist button:hover{background:var(--surface-alt)}

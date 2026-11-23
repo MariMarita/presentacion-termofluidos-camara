@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#14171e">
   <meta name="description" content="Diseño, simulación y validación de una cámara climática agua–aire. Proyecto de Termofluidos de la Universidad Militar Nueva Granada.">
-  <title>Cámara climática · Termofluidos UMNG</title>
+  <title>Cámara Climática Calentada con un Intercambiador Agua–Aire · Termofluidos UMNG</title>
   <link rel="icon" href="marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="estilos.css">
   <script src="presentacion.js" defer></script>
@@ -15,7 +15,7 @@
   <header class="topbar" id="inicio">
     <div class="shell topbar-inner">
       <a class="wordmark" href="#inicio"><img src="marca.svg" width="38" height="38" alt=""><span>Termofluidos <small>UMNG · 2026-2</small></span></a>
-      <a class="top-action" href="#sec-guion">Guion de sustentación</a>
+      <a class="top-action" href="#sec-guion">Equipo del proyecto</a>
     </div>
   </header>
   <main id="contenido" tabindex="-1">
@@ -23,8 +23,8 @@
       <div class="shell hero">
         <div class="hero-copy">
           <p class="eyebrow"><span aria-hidden="true"></span> Proyecto de ingeniería</p>
-          <h1>Cámara<br><em>climática.</em></h1>
-          <p class="hero-summary">Diseño y validación de una cámara instrumentada de 1000 in³ con calentamiento indirecto agua–aire.</p>
+          <h1>Cámara<br> <em>Climática</em> <span class="hero-title-detail">Calentada con un Intercambiador Agua–Aire</span></h1>
+          <p class="hero-summary">Diseño, instrumentación y validación de un prototipo con un volumen de ensayo mínimo de 1000 in³.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#sec-experimento">Ver resultados</a>
             <a class="btn btn-outline" href="#sec-diseno">Explorar el diseño</a>
@@ -41,12 +41,12 @@
       </div>
       <dl class="shell hero-metrics">
         <div><dt>Volumen libre</dt><dd>1156 <small>in³</small></dd><span>Mínimo de 1000 in³</span></div>
-        <div><dt>Tiempo hasta +10 K</dt><dd>17.8 <small>min</small></dd><span>Límite de 60 min</span></div>
-        <div><dt>Tiempo en banda de ±1 K</dt><dd>22.1 <small>min</small></dd><span>Mínimo de 20 min</span></div>
+        <div><dt>Tiempo hasta +10 K</dt><dd>17.9 <small>min</small></dd><span>Límite de 60 min</span></div>
+        <div><dt>Tiempo en banda de ±1 K</dt><dd>22.0 <small>min</small></dd><span>Mínimo de 20 min</span></div>
       </dl>
     </div>
     <div class="chapter-bar">
-      <nav class="shell chapter-nav" aria-label="Secciones de la presentación"><a href="#sec-resumen">Vista general</a><a href="#sec-diseno">Diseño térmico</a><a href="#sec-hx">Intercambiador</a><a href="#sec-control">Control</a><a href="#sec-simulacion">Simulación</a><a href="#sec-experimento">Validación</a><a href="#sec-guion">Guion</a></nav>
+      <nav class="shell chapter-nav" aria-label="Secciones de la presentación"><a href="#sec-resumen">Vista general</a><a href="#sec-diseno">Diseño térmico</a><a href="#sec-hx">Intercambiador</a><a href="#sec-control">Control</a><a href="#sec-simulacion">Simulación</a><a href="#sec-experimento">Validación</a><a href="#sec-guion">Equipo</a></nav>
     </div>
     <div class="shell chapters"><section id="sec-resumen" class="chapter" tabindex="-1">
       <header class="chapter-heading"><p class="eyebrow">Vista general</p><h2>Del modelo al laboratorio</h2><p class="chapter-lead">Una cámara de calentamiento indirecto que transfiere calor del agua al aire a través de un radiador de cobre de dos pasadas. La zona de ensayo queda libre de componentes.</p></header><div class="chapter-content"><div class="overview-figures">
@@ -74,7 +74,7 @@
       </div>
     <dl class="spec-strip">
               <div><dt>Dimensiones útiles</dt><dd>265 × 260 × 275 mm</dd></div>
-              <div><dt>Pérdidas térmicas</dt><dd>UA = 0.519 W/K</dd></div>
+              <div><dt>Pérdidas con el ventilador encendido</dt><dd>UA<sub>real</sub> = 1.59 W/K</dd></div>
               <div><dt>Intercambio agua–aire</dt><dd>K = 4.54 W/K</dd></div>
             </dl></div></section>
 <section id="sec-diseno" class="chapter" tabindex="-1">
@@ -83,7 +83,7 @@
         <div class="info-card">
           <h3>Geometría, Capas de la Pared y Hermeticidad (D1, M1, M2)</h3>
           <ul>
-            <li><strong>Criterio geométrico:</strong> Aunque la esfera reduce el área 19.4 %, se eligió un prisma rectangular casi cúbico para fabricar juntas planas sin fugas con lámina y tablero comercial.</li>
+            <li><strong>Criterio geométrico:</strong> Aunque la esfera reduce el área 19.4 %, se eligió un prisma rectangular casi cúbico para facilitar la fabricación con lámina y tablero comercial y el ajuste de juntas planas.</li>
             <li><strong>Volumen dividido en dos zonas:</strong>
               <ul>
                 <li><strong>Caja de ensayo útil:</strong> 265 × 260 × 275 mm = <strong>0.018948 m³ (1156 in³)</strong>, superando el mínimo obligatorio de 1000 in³.</li>
@@ -105,13 +105,15 @@
           <div class="formula-box">
             <strong>2. Red de resistencias térmicas 3D (con aristas y esquinas):</strong><br>
             R<sub>total</sub> = R<sub>i</sub> (0.114) + R<sub>al</sub> (0.00001) + R<sub>eps</sub> (1.569) + R<sub>mdf</sub> (0.138) + R<sub>o</sub> (0.141) = <strong>1.928 K/W</strong><br>
-            UA = 1 / R<sub>total</sub> = <strong>0.519 W/K</strong> (el EPS aporta el <strong>81.4 %</strong> del aislamiento)
+            UA = 1 / R<sub>total</sub> = <strong>0.519 W/K</strong> (el EPS aporta el <strong>81.4 %</strong> del aislamiento).<br>
+            Diseño sin infiltración: <strong>5.70 W</strong> a +11 K. El ensayo sin ventilador dio <strong>0.56 W/K</strong> (error del 7 %). Con el ventilador encendido, la sobrepresión interior provoca fugas por la junta de la tapa sin empaque y eleva la conductancia global medida a <strong>UA<sub>real</sub> = 1.59 W/K</strong> (≈17.5 W a +11 K).
           </div>
           <div class="formula-box">
             <strong>3. Balance transitorio, Masa Térmica y Potencia:</strong><br>
             C<sub>ef</sub> = ∑(m·c·f) = <strong>6911 J/K</strong> (Aluminio 19.5 %, Radiador+agua 33.0 %, MDF 28.1 %, Aire 0.4 %)<br>
-            C<sub>ef</sub>·(dT/dt) = Q̇<sub>hx</sub> − UA·(T − T<sub>∞</sub>) · τ = C<sub>ef</sub>/UA = 222 min<br>
-            Para +11 K en 20 min: <strong>Q̇<sub>req</sub> = 66.2 W</strong> · Mantenimiento: <strong>Q̇<sub>mant</sub> = 5.70 W</strong>
+            C<sub>ef</sub>·(dT/dt) = Q̇<sub>hx</sub> − UA·(T − T<sub>∞</sub>). Con UA de diseño, τ = C<sub>ef</sub>/UA = 222 min.<br>
+            En el cálculo de diseño, para +11 K en 20 min: <strong>Q̇<sub>req</sub> = 66.2 W</strong>. En sostenimiento: <strong>Q̇<sub>mant</sub> = 5.70 W</strong>.<br>
+            Durante la primera hora, el MDF exterior apenas se calienta y el radiador recibe calor del agua. La capacidad térmica efectiva identificada del lado del aire es <strong>C<sub>a</sub> = 3.8 kJ/K (3800 J/K)</strong>.
           </div>
         </div>
       </div>
@@ -121,7 +123,7 @@
           <a class="figure-link" href="figuras/cad/corte_materiales.png" data-figure="" aria-label="Ampliar: Corte lateral acotado de la cámara climática"><img src="figuras/cad/corte_materiales.png" alt="Corte lateral acotado de la cámara climática" width="2338" height="1654" loading="lazy" decoding="async">
           </a><figcaption>
             <strong>Corte Lateral Acotado del Diseño</strong>
-            <span>Disposición del aislamiento EPS de 40 mm, tapa escalonada con doble sello, repisa del radiador y flujo de aire.</span>
+            <span>Disposición del aislamiento EPS de 40 mm, tapa escalonada de diseño, repisa del radiador y flujo de aire.</span>
           </figcaption>
         </figure>
         <figure class="media-card">
@@ -142,36 +144,36 @@
           </p>
           <ul>
             <li><strong>29 tubos planos</strong> de latón/cobre en 2 pasadas (15 ida + 14 retorno).</li>
-            <li><strong>Área de aletas:</strong> A<sub>aleta</sub> = <strong>1.421 m²</strong> (persianas louvered, paso 1.5 mm, η<sub>f</sub> = 0.938, η<sub>o</sub> = 0.946).</li>
-            <li><strong>Área exterior de tubos:</strong> A<sub>tubo</sub> = <strong>0.214 m²</strong> (Área total lado aire = <strong>1.635 m²</strong>).</li>
-            <li><strong>Lado agua:</strong> Nu<sub>w</sub> = 8.235 (flujo laminar en ducto plano), h<sub>w</sub> = 1621 W/(m²·K).</li>
+            <li><strong>Área de aletas:</strong> A<sub>aleta</sub> = <strong>1.421 m²</strong>. Eficiencia de aleta η<sub>f</sub> = <strong>0.981</strong> con el ventilador instalado y 0.938 con el caudal de diseño.</li>
+            <li><strong>Área de tubos:</strong> A<sub>tubo</sub> = <strong>0.267 m²</strong> en el exterior de los 29 tubos. Área total del lado del aire: <strong>1.688 m²</strong>. Área mojada interna A<sub>mojada</sub> = <strong>0.258 m²</strong>.</li>
+            <li><strong>Lado del agua:</strong> La correlación de Shah–London para ducto plano de 17.5 × 1.6 mm da Nu<sub>w</sub> = <strong>7.54</strong> y h<sub>agua</sub> = <strong>1534 W/(m²·K)</strong>.</li>
+            <li><strong>Conductancias con el ventilador instalado:</strong> Con un factor de área activa f<sub>v</sub> = <strong>0.166</strong>, UA<sub>agua</sub> = <strong>65.7 W/K</strong> y UA<sub>aire</sub> = <strong>13.8 W/K</strong>. Para el aire, Nu<sub>aire</sub> = 4.93 y h<sub>aire</sub> = 50.1 W/(m²·K).</li>
           </ul>
         </div>
 
         <div class="info-card">
           <h3>Punto de Operación ε–NTU (D2, M3)</h3>
           <p>
-            Con el <strong>ventilador axial de 92 × 92 × 25 mm</strong> instalado (12 V, 0.14 A) a la densidad de Cajicá:
+            Punto de operación en Cajicá (74.14 kPa) con el <strong>ventilador axial de 92 × 92 × 25 mm</strong> instalado (12 V DC, 0.36 A, 4.3 W).
           </p>
           <div class="formula-box">
-            V̇<sub>aire</sub> = <strong>23.0 m³/h</strong> (ΔP = 10.6 Pa)<br>
+            V̇<sub>aire</sub> = <strong>23.0 m³/h</strong> (ΔP<sub>rad</sub> = <strong>9.5 Pa</strong>)<br>
             C<sub>aire</sub> = C<sub>min</sub> = <strong>5.23 W/K</strong><br>
             C<sub>agua</sub> = C<sub>max</sub> = <strong>109.7 W/K</strong> (a 1.6 L/min)<br>
             UA<sub>hx</sub> = <strong>11.4 W/K</strong> → NTU = 2.18<br>
             <strong>ε = 0.870</strong> → <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>
           </div>
           <p>
-            En las pruebas reales se identificó K<sub>exp</sub> ≈ 4.65 W/K (diferencia &lt; 2.5 %).
+            En el ensayo preliminar del 14 de noviembre se identificó <strong>K ≈ 4.65 W/K</strong>. En la prueba final, con las temperaturas de entrada y salida del agua y el caudal aforado, se midió <strong>K<sub>med</sub> = 4.03 W/K</strong>.
           </p>
         </div>
 
         <div class="info-card">
           <h3>Tanque, Resistencia y Bomba (M4)</h3>
           <ul>
-            <li><strong>Tanque:</strong> Recipiente de polipropileno Plásticos Kendy (6.5 L, T<sub>máx</sub> = 121 °C) con <strong>4.4 L de agua</strong> (C<sub>t</sub> = 18.3 kJ/K).</li>
-            <li><strong>Por qué con tapa:</strong> Sin tapa la evaporación pierde 59.7 a 168.7 W; con tapa se evita humidificar el laboratorio y se protege la electrónica.</li>
-            <li><strong>Resistencia:</strong> Tubular sumergida en U de 1000 W nominales a 120 V (<strong>833 W medidos</strong>: 118.4 V × 7.04 A).</li>
-            <li><strong>Bomba:</strong> Diafragma R385 (12 V DC, 0.30 A) con mangueras de PVC de 8 mm; caudal medido por aforo: <strong>1.76 L/min</strong> (ΔP<sub>circuito</sub> = 4.71 kPa).</li>
+            <li><strong>Tanque:</strong> Caja Tayrona No. 2 Alta de Plásticos Kendy (polipropileno, 6.5 L), con <strong>4.4 L de agua</strong> y C<sub>t</sub> = <strong>18.3 kJ/K</strong>. Sin aislamiento exterior, su conductancia de pérdidas es <strong>UA<sub>t</sub> = 2.67 W/K</strong> (≈41 W hacia el cuarto cuando el agua está a 37.8 °C).</li>
+            <li><strong>Resistencia:</strong> Tubular en U de acero inoxidable, de 700 W nominales a 110 V. En la línea de 120 V del laboratorio disipa <strong>833 W (6.94 A)</strong>.</li>
+            <li><strong>Circuito hidráulico:</strong> Bomba de diafragma R385 (12 V DC, 0.35 A, 4.2 W), ≈1 m de manguera de silicona de 6 mm de diámetro interno y codos reductores de 17 a 6 mm. A 1.6 L/min, la pérdida de carga calculada es <strong>3.74 kPa</strong> (0.38 m.c.a., v = 0.94 m/s, Re = 8138). Con el caudal aforado de <strong>1.76 L/min</strong>, la velocidad es 1.04 m/s y el tanque recircula por completo cada 2.5 min.</li>
           </ul>
         </div>
       </div>
@@ -198,19 +200,18 @@
         <div class="info-card">
           <h3>Por qué Control en Cascada PI + On/Off (C1, C2)</h3>
           <p>
-            El tanque con 4.4 L de agua y el radiador con el ventilador de 92 mm tienen constantes de tiempo del mismo orden (~14 min). Si se conmutara la resistencia de 833 W mirando solo el aire, el calor acumulado en el agua seguiría subiendo la cámara varios grados después de apagar.
+            Con las pérdidas reales con ventilador (<strong>UA<sub>real</sub> = 1.59 W/K</strong>) y el acoplamiento teórico (<strong>K = 4.54 W/K</strong>), mantener el tanque a la temperatura fija de diseño de <strong>30.65 °C</strong> habría estabilizado el aire en <strong>+9.1 K</strong>, por debajo de los +10 K exigidos. El control en cascada ajusta la temperatura objetivo del agua según el error del aire.
           </p>
           <div class="formula-box">
-            <strong>Lazo externo PI (calcula consigna del agua T<sub>set,w</sub> cada 1 s):</strong><br>
-            e<sub>a</sub> = T<sub>set,a</sub> − T<sub>aire</sub>  (con T<sub>set,a</sub> = T<sub>amb</sub> + 11.0 K)<br>
-            T*<sub>w</sub> = T<sub>amb</sub> + 2.0·(T<sub>set,a</sub> − T<sub>amb</sub>) + 0.6·e<sub>a</sub> + 0.0025·∫e<sub>a</sub> dt<br>
-            Saturación: T<sub>set,w</sub> ∈ [T<sub>set,a</sub>, min(T<sub>amb</sub> + 30 K, 58 °C)]
+            <strong>Lazo externo PI (actualiza la consigna del agua cada segundo)</strong><br>
+            e = T<sub>o</sub> − T<sub>aire</sub>, con T<sub>o</sub> = T<sub>amb,ref</sub> + Δ y Δ = 11 K.<br>
+            T*<sub>w</sub> = T<sub>o</sub> + D + R·e, con saturación en [T<sub>o</sub>, T<sub>tope</sub>] y T<sub>tope</sub> = min(T<sub>o</sub> + 8 K, 50 °C).<br>
+            dD/dt = (R / T<sub>i</sub>) · e = e / (1200 s), con R = 0.6 y T<sub>i</sub> = 720 s. D(0) = 3.0·Δ/11 = 3.0 K y D ∈ [0, 8 K].<br>
+            El firmware solo integra cuando la consigna calculada está entre ambos topes y |T<sub>w</sub> − T*<sub>w</sub>| &lt; 1.5 K.
           </div>
           <div class="formula-box">
-            <strong>Lazo interno On/Off con histéresis (±0.2 K) sobre T<sub>agua,ent</sub>:</strong><br>
-            • Si T<sub>ent</sub> &lt; T<sub>set,w</sub> − 0.2 K → Resistencia ON<br>
-            • Si T<sub>ent</sub> &gt; T<sub>set,w</sub> + 0.2 K → Resistencia OFF<br>
-            • Si e<sub>a</sub> &lt; −0.3 K → Apagado directo y congelación del integrador (anti-windup)
+            <strong>Lazo interno On/Off (histéresis de ±0.2 K)</strong><br>
+            La resistencia se enciende si la temperatura de entrada del agua es inferior a la consigna saturada menos 0.2 K y se apaga si supera esa consigna más 0.2 K.
           </div>
         </div>
 
@@ -221,11 +222,13 @@
             <li><strong>Filtro de 3 etapas + Calibración (E2):</strong>
               <ol>
                 <li>Verificación CRC de 8 bits y descarte de −127 °C y 85 °C.</li>
-                <li>Rechazo de picos (&gt; 3 K en aire o &gt; 8 K en agua en 1 s).</li>
-                <li>Filtro de Kalman escalar (Q = 0.002 K², R = 0.03 K²) + corrección de desfases en frío.</li>
+                <li>Rechazo de picos: se descartan saltos &gt; 3 °C en 1 s.</li>
+                <li>Filtro de Kalman escalar en cada sonda: <strong>Q = 0.01</strong> y <strong>R<sub>ruido</sub> = 0.04</strong>.</li>
               </ol>
             </li>
-            <li><strong>Conmutación y Potencia (E3, E4):</strong> ESP32-S3-N16R8 gobierna módulo optoacoplado de relés SRD-05VDC-SL-C (lógica invertida: <code>GPIO 5</code> Bomba, <code>GPIO 6</code> Resistencia, <code>GPIO 7</code> Ventilador). Línea AC de 120 V aislada de la fuente DC BAKU de 12 V (consumo total DC: 5.3 W).</li>
+            <li><strong>Calibración en frío (E2):</strong> El firmware resta los desfases de las cuatro sondas de aire (+0.28, −0.35, −0.09 y +0.16 K). La dispersión en frío baja de <strong>0.63 K a 0.12 K</strong>.</li>
+            <li><strong>Conmutación y Potencia (E3, E4):</strong> ESP32-S3-N16R8 gobierna módulo optoacoplado de relés SRD-05VDC-SL-C (lógica invertida: <code>GPIO 5</code> Bomba, <code>GPIO 6</code> Resistencia, <code>GPIO 7</code> Ventilador). Línea AC de 120 V aislada de la fuente regulable BAKU BK-1502D+ a 12 V. La bomba consume 0.35 A (4.2 W) y el ventilador 0.36 A (4.3 W), para un total de <strong>0.71 A (8.5 W DC)</strong>.</li>
+            <li><strong>Alarmas del firmware:</strong> Agua por encima de 50 °C, desvío de consigna del aire fuera de ±1 °C en régimen, dispersión entre las cuatro sondas de aire superior a 2 °C y fallo o desconexión de sonda.</li>
           </ul>
         </div>
       </div>
@@ -241,21 +244,21 @@
           </defs>
           <g fill="none" stroke="currentColor" stroke-width="1.6" font-family="system-ui, sans-serif" font-size="11">
             <!-- Setpoint -->
-            <text x="15" y="70" fill="currentColor" font-weight="700">T_set,a = T_amb + 11 K</text>
+            <text x="15" y="70" fill="currentColor" font-weight="700">T_o = T_amb,ref + 11 K</text>
             <line x1="145" y1="66" x2="178" y2="66" marker-end="url(#arrow)"></line>
             <!-- Sum 1 -->
             <circle cx="192" cy="66" r="12"></circle>
             <text x="188" y="70" fill="currentColor">+</text>
             <text x="196" y="92" fill="currentColor">−</text>
             <line x1="204" y1="66" x2="245" y2="66" marker-end="url(#arrow)"></line>
-            <text x="218" y="58" fill="currentColor">e_a</text>
+            <text x="218" y="58" fill="currentColor">e</text>
             <!-- Lazo externo PI -->
             <rect x="248" y="38" width="165" height="56" rx="6" fill="var(--surface-alt)" stroke="var(--brand)" stroke-width="2"></rect>
             <text x="330" y="58" text-anchor="middle" fill="currentColor" font-weight="700">Lazo Externo PI + Sat.</text>
-            <text x="330" y="74" text-anchor="middle" fill="currentColor">k_ff=2.0, R=0.6, k_i=0.0025</text>
-            <text x="330" y="88" text-anchor="middle" fill="currentColor">T_set,w ≤ min(T_amb+30, 58°C)</text>
+            <text x="330" y="74" text-anchor="middle" fill="currentColor" font-size="9" stroke="none">R = 0.6, T_i = 720 s, D(0) = 3.0 K</text>
+            <text x="330" y="88" text-anchor="middle" fill="currentColor" stroke="none">[T_o, min(T_o + 8 K, 50 °C)]</text>
             <line x1="413" y1="66" x2="462" y2="66" marker-end="url(#arrow)"></line>
-            <text x="437" y="58" text-anchor="middle" fill="currentColor">T_set,w</text>
+            <text x="437" y="58" text-anchor="middle" fill="currentColor">T*_w</text>
             <!-- Lazo interno On/Off -->
             <rect x="465" y="38" width="135" height="56" rx="6" fill="var(--surface-alt)" stroke="var(--brand)" stroke-width="2"></rect>
             <text x="532" y="60" text-anchor="middle" fill="currentColor" font-weight="700">Relé On/Off</text>
@@ -326,21 +329,21 @@
                   <a class="figure-link" href="figuras/ansys_paredes/ansys_corte_temperatura.png" data-figure="" aria-label="Ampliar: Campo estacionario de temperatura en las paredes en ANSYS"><img src="figuras/ansys_paredes/ansys_corte_temperatura.png" alt="Campo estacionario de temperatura en las paredes en ANSYS" width="2143" height="1610" loading="lazy" decoding="async">
                   </a><figcaption>
                     <strong>Campo Estacionario de Temperatura (ANSYS SOLID90)</strong>
-                    <span>Malla fina de 74 088 nodos (convergencia &lt; 0.03 %). El salto térmico de 11 K cae casi íntegro en los 40 mm de EPS.</span>
+                    <span>ANSYS MAPDL con 74 088 nodos e índice de convergencia de malla <strong>GCI = 0.12 %</strong>. El salto térmico de 11 K cae casi íntegro en los 40 mm de EPS.</span>
                   </figcaption>
                 </figure>
                 <figure class="media-card">
                   <a class="figure-link" href="figuras/ansys_paredes/ansys_corte_flujo_de_calor.png" data-figure="" aria-label="Ampliar: Magnitud del flujo de calor en las paredes en ANSYS"><img src="figuras/ansys_paredes/ansys_corte_flujo_de_calor.png" alt="Magnitud del flujo de calor en las paredes en ANSYS" width="2143" height="1610" loading="lazy" decoding="async">
                   </a><figcaption>
-                    <strong>Flujo de Calor Cámara → Ambiente (Q̇ = 5.47 W)</strong>
-                    <span>Diferencia de solo 4.0 % frente a la red analítica con factores de forma (5.70 W).</span>
+                    <strong>Flujo de calor cámara–ambiente en MAPDL (5.49 W)</strong>
+                    <span>Flujo estacionario de 5.49 W en MAPDL frente a 5.70 W en la red analítica (diferencia inferior al 4 %).</span>
                   </figcaption>
                 </figure>
                 <figure class="media-card">
                   <a class="figure-link" href="figuras/workbench/01_estable_temperatura_corte.png" data-figure="" aria-label="Ampliar: Verificación cruzada en ANSYS Workbench"><img src="figuras/workbench/01_estable_temperatura_corte.png" alt="Verificación cruzada en ANSYS Workbench" width="1056" height="743" loading="lazy" decoding="async">
                   </a><figcaption>
                     <strong>Verificación en ANSYS Workbench (225 466 nodos)</strong>
-                    <span>Reproduce la misma distribución de temperatura (30.0 °C adentro a 19.86 °C afuera).</span>
+                    <span>El flujo estacionario en Workbench es de 5.47 W con 225 466 nodos (≈4 % por debajo de los 5.70 W de la red analítica).</span>
                   </figcaption>
                 </figure>
               </div>
@@ -382,16 +385,16 @@
                   <a class="figure-link" href="figuras/modelo_python/teorico_vs_simulado.png" data-figure="" aria-label="Ampliar: Comparación entre modelo teórico concentrado y simulado distribuido"><img src="figuras/modelo_python/teorico_vs_simulado.png" alt="Comparación entre modelo teórico concentrado y simulado distribuido" width="1400" height="660" loading="lazy" decoding="async">
                   </a><figcaption>
                     <strong>Modelo Teórico Concentrado vs. Simulado Distribuido (con Ventilador de 92 mm y Cascada PI)</strong>
-                    <span>Con las propiedades de diseño el tiempo a +10 K difiere solo 2.1 % (26.6 min vs. 27.1 min); con las pérdidas medidas en laboratorio difiere 3.3 % (17.3 min vs. 17.9 min).</span>
+                    <span>La figura muestra los casos con pérdidas de diseño y pérdidas medidas. Según la Tabla XVII, con las pérdidas medidas se llega a +10 K en 35.5 min con el modelo concentrado y en 18.0 min con el distribuido, frente a 17.9 min en el ensayo.</span>
                   </figcaption>
                 </figure>
                 <div class="info-card">
-                  <h3>Por qué coinciden tan bien ambos modelos</h3>
+                  <h3>Por qué el modelo distribuido reproduce el ensayo</h3>
                   <p>
-                    En el modelo teórico concentrado (3 EDO) el acoplamiento agua–aire se calcula con la fórmula analítica <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>, mientras que el modelo simulado distribuido divide los tubos del radiador en 20 celdas axiales y el EPS en 12 capas con masa térmica.
+                    Con las pérdidas medidas, el modelo concentrado tarda <strong>35.5 min</strong> en alcanzar +10 K (26.6 min con UA de diseño). Desde t = 0 asigna al sistema los <strong>6911 J/K</strong> de capacidad térmica efectiva, incluidos las paredes y el MDF.
                   </p>
                   <p>
-                    Como el caudal de agua es alto (C<sub>min</sub>/C<sub>max</sub> = 0.044), la caída de temperatura del agua en el radiador es menor a 0.3 K y la fórmula analítica ε–NTU reproduce exactamente la integración celda por celda.
+                    El modelo distribuido resuelve <strong>12 capas de EPS</strong> y usa <strong>3.8 kJ/K</strong> para la respuesta rápida del aire y el forro interior. Durante los primeros 20 min, la onda de calor aún no llega al MDF exterior. El resultado es <strong>18.0 min</strong> hasta +10 K, frente a <strong>17.9 min</strong> en el ensayo.
                   </p>
                 </div>
               </div>
@@ -401,10 +404,10 @@
       </div>
     </div></section>
 <section id="sec-experimento" class="chapter" tabindex="-1">
-      <header class="chapter-heading"><p class="eyebrow">Validación</p><h2>La prueba final</h2><p class="chapter-lead">En el ensayo del 22 de noviembre de 2026, la cámara alcanzó el salto térmico de +10 K en 17.8 min y permaneció 22.1 min en la banda de tolerancia. En la primera prueba, con arranque en frío, alcanzar +10 K tomó 24.6 min.</p></header><div class="chapter-content"><div class="experiment-grid">
+      <header class="chapter-heading"><p class="eyebrow">Validación</p><h2>La prueba final</h2><p class="chapter-lead">En el ensayo del 22 de noviembre de 2026, la cámara alcanzó el salto térmico de +10 K en 17.9 min y permaneció 22.0 min en la banda de tolerancia. En la primera prueba, con arranque en frío, alcanzar +10 K tomó 24.6 min.</p></header><div class="chapter-content"><div class="experiment-grid">
             <div class="chart-card">
               <div class="chart-title">
-                <div><h3>Temperatura sobre el ambiente</h3><p>Comparación del ensayo y los modelos</p></div>
+                <div><h3>Temperatura sobre el ambiente</h3><p>Curvas de referencia de la presentación anterior</p></div>
                 <span class="chart-time"><output id="plot-time" for="plot-position">17.8</output> min</span>
               </div>
               <canvas id="plot" aria-hidden="true"></canvas>
@@ -417,19 +420,19 @@
                 <div class="simulated"><dt>Simulado</dt><dd id="simulated">+9.97 K</dd></div>
                 <div class="theoretical"><dt>Teórico</dt><dd id="theoretical">+10.12 K</dd></div>
               </dl>
-              <p class="plot-note" id="plot-note">18 puntos de la presentación original. La franja marca la banda de +10 a +12 K.</p>
+              <p class="plot-note" id="plot-note">Se conservan los 18 puntos de la versión anterior. Para las cifras definitivas, consulta la tabla de abajo. La franja marca la banda de +10 a +12 K.</p>
             </div>
           <figure class="media-card">
             <a class="figure-link" href="figuras/modelo_python/ensayo_final_experimental.png" data-figure="" aria-label="Ampliar: Curvas experimentales de la prueba 2 del 22 de noviembre de 2026"><img src="figuras/modelo_python/ensayo_final_experimental.png" alt="Curvas experimentales de la prueba 2 del 22 de noviembre de 2026" width="1400" height="1000" loading="lazy" decoding="async">
             </a><figcaption>
               <strong>Registro Experimental de la Prueba 2 (39.9 min, 2394 muestras a 1 Hz)</strong>
-              <span>Llegada a +10 K a los 17.8 min y sostenimiento durante 22.1 min dentro de la banda de ±1 K con 5 pulsos cortos de la resistencia.</span>
+              <span>Según la Tabla XVII, se alcanzó +10 K en 17.85 min y se permaneció 22.05 min en la banda de ±1 K.</span>
             </figcaption>
           </figure>
         </div><!-- Tabla Responsiva de Comparación Teórico vs Simulado vs Experimental -->
       <div tabindex="0" role="region" aria-labelledby="cap-comparacion" class="table-wrapper">
         <table class="data-table">
-          <caption id="cap-comparacion">Comparación de la prueba 2</caption>
+          <caption id="cap-comparacion">Comparación de la prueba 2 · Tabla XVII<br><small>Pérdidas medidas: UA = 1.59 W/K y UA<sub>t</sub> = 2.67 W/K</small></caption>
           <thead>
             <tr>
               <th scope="col">Magnitud Evaluada</th>
@@ -442,52 +445,48 @@
           <tbody>
             <tr>
               <th scope="row">Tiempo hasta ΔT = +10 K [min]</th>
-              <td>17.3</td>
-              <td>17.9</td>
-              <td><strong>17.8</strong> (requisito ≤ 60)</td>
+              <td>35.5 (26.6 con UA de diseño)</td>
+              <td>18.0</td>
+              <td><strong>17.9</strong> (17.85 min)</td>
               <td><strong>0.6 %</strong></td>
             </tr>
             <tr>
               <th scope="row">Tiempo continuo en banda ±1 K [min]</th>
-              <td>22.7</td>
-              <td>22.1</td>
-              <td><strong>22.1</strong> (requisito ≥ 20)</td>
-              <td><strong>0.2 %</strong></td>
+              <td>4.5 (en una ventana de 40 min)</td>
+              <td>21.9</td>
+              <td><strong>22.0</strong> (22.05 min)</td>
+              <td><strong>0.5 %</strong></td>
             </tr>
             <tr>
-              <th scope="row">Desviación máx. respecto a consigna [K]</th>
-              <td>0.78</td>
-              <td>0.81</td>
-              <td><strong>0.76</strong> (requisito ≤ 1.0)</td>
-              <td><strong>6.6 %</strong></td>
+              <th scope="row">ΔT aire–ambiente media en sostenimiento [K]</th>
+              <td>+10.22</td>
+              <td>+10.77</td>
+              <td><strong>+10.85</strong> (σ = 0.25 K, desviación máxima de 0.76 K)</td>
+              <td><strong>0.7 %</strong></td>
             </tr>
             <tr>
-              <th scope="row">ΔT aire–ambiente final [K]</th>
-              <td>11.00</td>
-              <td>10.97</td>
-              <td><strong>10.88</strong> (T<sub>aire</sub> = 35.16 °C)</td>
-              <td><strong>0.8 %</strong></td>
-            </tr>
-            <tr>
-              <th scope="row">Temperatura media en sostenimiento [°C]</th>
-              <td>34.88</td>
+              <th scope="row">Temperatura de la cámara en sostenimiento [°C]</th>
+              <td aria-label="Sin dato">—</td>
               <td>34.91</td>
-              <td><strong>34.98 ± 0.62 K</strong></td>
+              <td><strong>35.0 °C ± 0.6 K</strong> (dispersión media entre las cuatro sondas de 0.98 K)</td>
               <td><strong>0.2 %</strong></td>
-            </tr>
-            <tr>
-              <th scope="row">Energía eléctrica consumida [Wh]</th>
-              <td>133.5</td>
-              <td>124.2</td>
-              <td><strong>122.1</strong> (8.8 min ON)</td>
-              <td><strong>1.7 %</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div class="info-card">
+        <h3>Balance de energía experimental en la prueba 2</h3>
+        <p>La resistencia consumió <strong>122.1 Wh (439.5 kJ)</strong> en 8.8 min encendida. El factor de marcha fue <strong>22.0 %</strong> durante toda la prueba y <strong>13.3 %</strong> en sostenimiento.</p>
+        <ul>
+          <li><strong>54.5 % (66.6 Wh = 239.7 kJ)</strong> almacenado en los 4.4 L de agua del tanque al pasar de 21.5 a 34.6 °C.</li>
+          <li><strong>21.8 % (26.6 Wh = 95.7 kJ)</strong> perdido por convección y radiación en las paredes del tanque sin aislar (UA<sub>t</sub> = 2.67 W/K).</li>
+          <li><strong>16.6 % (20.3 Wh = 73.0 kJ)</strong> cedido por el agua en el radiador. Del lado del aire se midió un 14.3 % del total, del cual 2.6 puntos porcentuales calentaron la cámara y 11.7 se perdieron hacia el ambiente.</li>
+          <li><strong>7.1 % (8.7 Wh = 31.1 kJ)</strong> en calor residual de la resistencia, mangueras y cierre del balance.</li>
+        </ul>
+      </div>
     </div></section>
 <section id="sec-guion" class="chapter" tabindex="-1">
-      <header class="chapter-heading"><p class="eyebrow">Guion</p><h2>Equipo y guion de sustentación</h2><p class="chapter-lead">Consulta la matriz de responsabilidades y selecciona a un integrante para leer su intervención.</p></header><div class="chapter-content"><!-- Tabla Responsiva 4x4 de Responsabilidades -->
+      <header class="chapter-heading"><p class="eyebrow">Equipo</p><h2>Integrantes del proyecto</h2><p class="chapter-lead">Responsabilidades en diseño, mecánica, electrónica y control.</p></header><div class="chapter-content"><!-- Tabla Responsiva 4x4 de Responsabilidades -->
       <div tabindex="0" role="region" aria-labelledby="cap-responsabilidades" class="table-wrapper">
         <table class="data-table">
           <caption id="cap-responsabilidades">Matriz de responsabilidades</caption>
@@ -503,28 +502,28 @@
           <tbody>
             <tr>
               <th scope="row">1. Valentina Cárdenas</th>
-              <td><strong>D1. Cámara:</strong> balance de masa y energía, aislamiento, pérdidas (UA = 0.519 W/K), masa térmica (6911 J/K) y potencia.</td>
+              <td><strong>D1. Cámara:</strong> balance de masa y energía, aislamiento, pérdidas (0.519 W/K de diseño y 1.59 W/K con ventilador), masa térmica (6911 J/K) y capacidad efectiva del lado del aire (3.8 kJ/K).</td>
               <td><strong>M3. Compartimento del radiador:</strong> repisa, reja perforada en L y montaje del radiador y ventilador de 92 mm.</td>
-              <td><strong>E4. Potencia y seguridad:</strong> fuente DC de 12 V (5.3 W), línea AC de 120 V de la resistencia (833 W) y consumos.</td>
-              <td><strong>C4. Pruebas:</strong> protocolo, ejecución y análisis de registros (cumplimiento +10 K en 17.8 min y balance de energía).</td>
+              <td><strong>E4. Potencia y seguridad:</strong> fuente DC de 12 V (8.5 W), línea AC de 120 V de la resistencia (833 W) y consumos.</td>
+              <td><strong>C4. Pruebas:</strong> protocolo, ejecución y análisis de registros (+10 K en 17.9 min, 22.0 min en banda y balance de energía).</td>
             </tr>
             <tr>
               <th scope="row">2. Santiago Vega</th>
               <td><strong>D4. Planos y materiales:</strong> 18 piezas, ensamble y 20 planos en SolidWorks 2025, lista de materiales (BOM).</td>
               <td><strong>M4. Circuito hidráulico:</strong> tanque de 4.4 L con resistencia, bomba R385, mangueras y aforo de caudal (1.76 L/min).</td>
               <td><strong>E3. ESP32-S3 y relés:</strong> asignación de pines, módulo SRD-05VDC-SL-C y conmutación de bomba, resistencia y ventilador.</td>
-              <td><strong>C1. Estrategia y sintonía:</strong> cascada PI + on/off (±0.2 K), consigna T<sub>amb</sub> + 11 K y ganancias simuladas.</td>
+              <td><strong>C1. Estrategia y sintonía:</strong> cascada PI + on/off (±0.2 K), consigna de aire T<sub>amb,ref</sub> + 11 K y parámetros del firmware R = 0.6 y T<sub>i</sub> = 720 s.</td>
             </tr>
             <tr>
               <th scope="row">3. Mariana Gil</th>
               <td><strong>D3. Simulación:</strong> 6 modelos en Python y ANSYS 16 (sensibilidad de malla y transitorio) y comparación.</td>
-              <td><strong>M2. Aislamiento y sellado:</strong> EPS de 40 mm, forro de aluminio de 0.95 mm, juntas y control de fugas por la tapa.</td>
+              <td><strong>M2. Aislamiento y sellado:</strong> EPS de 40 mm, forro de aluminio de 0.95 mm, juntas y análisis de fugas por la tapa sin empaque.</td>
               <td><strong>E2. Acondicionamiento y calibración:</strong> verificación CRC, rechazo de picos, filtro de Kalman y desfases en frío.</td>
               <td><strong>C2. Firmware:</strong> lazo de control cada 1 s, protecciones de sobretemperatura, alarmas, energía y eficiencia.</td>
             </tr>
             <tr>
               <th scope="row">4. Andrés Fonseca</th>
-              <td><strong>D2. Intercambiador:</strong> selección del radiador y ventilador, método ε–NTU (ε = 0.870), K = 4.54 W/K y caudal.</td>
+              <td><strong>D2. Intercambiador:</strong> selección del radiador y ventilador, método ε–NTU (ε = 0.870), K = 4.54 W/K teórico, K<sub>med</sub> = 4.03 W/K en la prueba final y caudal.</td>
               <td><strong>M1. Caja:</strong> corte y armado del MDF de 15 mm, caja útil de 265 × 260 × 275 mm (1156 in³) y tapa superior.</td>
               <td><strong>E1. Sensores:</strong> las 7 sondas DS18B20 en el bus 1-Wire (GPIO 4), direcciones ROM y ubicación espacial.</td>
               <td><strong>C3. Interfaces:</strong> programa de escritorio PyQt5 con gráficas y CSV, y página web móvil por Wi-Fi (192.168.4.1).</td>
@@ -533,147 +532,11 @@
         </table>
       </div>
 
-      <!-- Tabs interactivos con el Guion Completo palabra por palabra para cada integrante -->
-      <h3>Guion por integrante</h3>
-      <p>Cada intervención dura de 3 a 4 minutos y cubre los módulos asignados de diseño, mecánica, electrónica y control.</p>
-
-      <div class="tabs-container" data-tabs>
-        <div class="tablist" focusgroup="tablist nomemory" aria-label="Guion de sustentación por integrante" role="tablist">
-          <button type="button" role="tab" id="tab-g-1" aria-selected="true" focusgroupstart>Valentina Cárdenas</button>
-          <button type="button" role="tab" id="tab-g-2" aria-selected="false" tabindex="-1">Andrés Fonseca</button>
-          <button type="button" role="tab" id="tab-g-3" aria-selected="false" tabindex="-1">Santiago Vega</button>
-          <button type="button" role="tab" id="tab-g-4" aria-selected="false" tabindex="-1">Mariana Gil</button>
-        </div>
-
-        <div class="tabpanel-stack">
-          <!-- GUION 1: VALENTINA CÁRDENAS -->
-          <div role="tabpanel" aria-labelledby="tab-g-1" tabindex="0">
-            <div class="panel-inner">
-              <div class="script-card">
-                <h4>
-                  <span>Apertura y D1 — Diseño Térmico de la Cámara (Balance, Aislamiento, Masa Térmica y Potencia)</span>
-                  <span class="cue-tag">Mostrar Sección 1 y Sección 2</span>
-                </h4>
-                <p class="script-quote">
-                  «Buenos días, profesor y compañeros. Nuestro proyecto es el diseño, construcción, instrumentación y validación de una cámara climática de calentamiento indirecto agua–aire. Yo les voy a presentar el análisis termodinámico de la cámara (<strong>D1</strong>), el montaje del compartimento del radiador (<strong>M3</strong>), la etapa de potencia y seguridad eléctrica (<strong>E4</strong>) y el análisis de las pruebas finales de validación (<strong>C4</strong>).<br><br>
-                  Empezando por el <strong>diseño térmico de la cámara (D1)</strong>: trabajamos con todas las propiedades del aire evaluadas a la presión barométrica de Cajicá, <strong>74.14 kPa</strong> (a 2558 m), donde la densidad del aire es <strong>0.852 kg/m³</strong> —un 27 % menor que a nivel del mar— y el agua hierve a <strong>91.5 °C</strong>. Para garantizar que la temperatura nunca baje de +10 K sobre el ambiente dentro de la banda de ±1 K, fijamos la consigna de diseño en <strong>T<sub>amb</sub> + 11 K</strong>.<br><br>
-                  Modelamos la transferencia de calor tridimensional a través de la pared compuesta —lámina interior de aluminio de 0.95 mm, poliestireno expandido (EPS) de 40 mm y cascarón exterior de MDF de 15 mm— sumando los factores de forma de las 6 caras planas, las 12 aristas y las 8 esquinas. Esto nos dio una resistencia térmica total de <strong>1.928 K/W</strong>, equivalente a una conductancia global <strong>UA = 0.519 W/K</strong>, donde el EPS aporta el <strong>81.4 %</strong> del aislamiento total. Con esto, las pérdidas estacionarias a +11 K son de apenas <strong>5.70 W</strong>. Además, cuantificamos la masa térmica efectiva de todos los componentes internos ponderada por su fracción de calentamiento f, obteniendo <strong>C<sub>ef</sub> = 6911 J/K</strong> (donde el aire es solo el 0.4 % y dominan el conjunto radiador–agua con 33 % y el forro de aluminio con 19.5 %). Del balance de energía transitorio obtuvimos una potencia requerida en el aire de <strong>66.2 W</strong> para llegar en 20 minutos y <strong>5.70 W</strong> para sostenimiento.»
-                </p>
-              </div>
-
-              <div class="script-card">
-                <h4>
-                  <span>M3 y E4 — Compartimento del Radiador y Etapa de Potencia y Seguridad</span>
-                  <span class="cue-tag">Mostrar Figuras del Interior y Relés (Secciones 2 y 4)</span>
-                </h4>
-                <p class="script-quote">
-                  «En la parte mecánica (<strong>M3</strong>), construimos un compartimento técnico posterior de 150 mm de fondo separado de la zona de ensayo por una <strong>reja metálica perforada en L</strong>. Allí montamos el radiador de cobre sobre una repisa de MDF de 15 mm con abertura inferior de retorno y acoplamos el ventilador axial de 92 mm directamente contra la cara del núcleo para forzar el paso del aire entre las aletas y evitar cortocircuitos de flujo.<br><br>
-                  En cuanto a <strong>potencia y seguridad (E4)</strong>, separamos completamente el circuito de corriente alterna de 120 V del circuito de corriente continua. Medimos con multímetro la resistencia tubular sumergida operando a <strong>118.4 V AC y 7.04 A</strong>, lo que entrega una potencia eléctrica real de <strong>833 W</strong>. Para la bomba y el ventilador utilizamos una fuente DC regulada a <strong>12.0 V</strong>, con consumos medidos de <strong>0.30 A (3.6 W)</strong> en la bomba y <strong>0.14 A (1.7 W)</strong> en el ventilador, sumando solo <strong>5.3 W DC</strong>.»
-                </p>
-              </div>
-
-              <div class="script-card">
-                <h4>
-                  <span>C4 — Protocolo, Ejecución y Análisis de las Pruebas Experimentales Finales</span>
-                  <span class="cue-tag">Mostrar Sección 6 (Gráfica y Tabla de Cumplimiento)</span>
-                </h4>
-                <p class="script-quote">
-                  «Finalmente, en la <strong>validación experimental (C4)</strong> ejecutamos el protocolo completo el 22 de noviembre con muestreo cada segundo. En la Prueba 1, arrancando desde frío, la cámara alcanzó +10 K en <strong>24.6 min</strong>. En la Prueba 2, registrada durante <strong>39.9 min (2394 muestras)</strong>, el aire alcanzó <strong>+10 K en 17.8 min</strong> (muy por debajo del límite de 60 min) y se mantuvo estable durante <strong>22.1 min</strong> (superando los 20 min exigidos) a una temperatura media de <strong>34.98 °C ± 0.62 K</strong>, con una desviación máxima respecto a la consigna de <strong>0.76 K</strong> (≤ 1.0 K). Del balance de energía experimental, la resistencia estuvo encendida 8.8 min consumiendo <strong>122.1 Wh</strong>, de los cuales <strong>20.3 Wh (16.6 %)</strong> se transfirieron del radiador al aire, 59 % calentó el agua del tanque y 24 % se disipó por las paredes del tanque sin aislar. Le doy la palabra a Andrés.»
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- GUION 2: ANDRÉS FONSECA -->
-          <div role="tabpanel" aria-labelledby="tab-g-2" hidden="until-found">
-            <div class="panel-inner">
-              <div class="script-card">
-                <h4>
-                  <span>M1 y D2 — Construcción de la Caja de MDF y Selección del Intercambiador (ε–NTU)</span>
-                  <span class="cue-tag">Mostrar Sección 2 y Sección 3</span>
-                </h4>
-                <p class="script-quote">
-                  «Gracias, Valentina. Yo estuve a cargo del corte y armado de la caja estructural (<strong>M1</strong>), del diseño térmico del intercambiador agua–aire y su ventilador (<strong>D2</strong>), de la red de sensores digitales (<strong>E1</strong>) y de las interfaces gráficas de escritorio y web móvil (<strong>C3</strong>).<br><br>
-                  En la <strong>construcción de la caja (M1)</strong>, fabricamos el cascarón exterior en MDF de 15 mm con dimensiones internas totales de 415 × 260 × 275 mm. Descontando los 150 mm del compartimento del radiador, la <strong>caja de ensayo útil libre quedó de 265 × 260 × 275 mm</strong>, lo que equivale a <strong>0.018948 m³ o 1156 in³</strong>, cumpliendo con holgura el volumen obligatorio de 1000 in³ y dejando una tapa superior desmontable para introducir las muestras.<br><br>
-                  Para el <strong>intercambiador de calor (D2)</strong>, seleccionamos un radiador automotriz de cobre y latón de dos pasadas (215 × 170 × 50 mm) con 29 tubos planos y aletas con persianas que aportan un área total del lado del aire de <strong>1.635 m²</strong> (1.421 m² en aletas con eficiencia η<sub>f</sub> = 93.8 % y 0.214 m² en tubos). Cruzando la curva hidráulica del radiador con la curva del ventilador axial de 92 mm corregida a la densidad de Cajicá, determinamos el punto de operación real en <strong>23.0 m³/h</strong> (ΔP = 10.6 Pa). Aplicando el método <strong>ε–NTU</strong> para flujo cruzado con C<sub>min</sub> = C<sub>aire</sub> = 5.23 W/K y C<sub>max</sub> = C<sub>agua</sub> = 109.7 W/K, obtuvimos <strong>UA = 11.4 W/K</strong>, <strong>NTU = 2.18</strong>, una efectividad <strong>ε = 0.870</strong> y una constante global de acoplamiento agua–aire <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>, que coincide con los 4.65 W/K medidos en laboratorio.»
-                </p>
-              </div>
-
-              <div class="script-card">
-                <h4>
-                  <span>E1 y C3 — Red de 7 Sensores DS18B20 e Interfaces PyQt5 y Web Wi-Fi</span>
-                  <span class="cue-tag">Mostrar Sección 4 (Sensores, GUI de Escritorio y Web Móvil)</span>
-                </h4>
-                <p class="script-quote">
-                  «Para la <strong>instrumentación (E1)</strong> instalamos <strong>7 sondas digitales sumergibles DS18B20</strong> con vaina de acero inoxidable sobre un único bus 1-Wire en el pin <code>GPIO 4</code> con resistencia pull-up de 5 kΩ: identificamos la dirección ROM de 64 bits de cada sonda para ubicar 4 sensores distribuidos a distintas alturas dentro del volumen de aire de la cámara (Aire 1 a Aire 4), 1 sensor de temperatura ambiente exterior, 1 sensor en la entrada de agua caliente y 1 sensor en el retorno de agua del radiador.<br><br>
-                  Finalmente, desarrollamos dos <strong>interfaces de usuario en tiempo real (C3)</strong> que incluyen los 10 elementos exigidos más los criterios de bonificación: una aplicación de escritorio en Python (<strong>PyQt5 y pyqtgraph</strong>) conectada por USB y una <strong>página web servida por Wi-Fi desde la ESP32-S3</strong> en la dirección <code>192.168.4.1</code>. Ambas muestran en vivo las 7 temperaturas, la evolución temporal de la cámara, el estado encendido/apagado de bomba, resistencia y ventilador, el tiempo de operación, una franja de alarmas visuales y sonoras, el consumo energético acumulado en Wh, la eficiencia térmica instantánea y global, y permiten descargar el registro CSV completo. Los dejo con Santiago.»
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- GUION 3: SANTIAGO VEGA -->
-          <div role="tabpanel" aria-labelledby="tab-g-3" hidden="until-found">
-            <div class="panel-inner">
-              <div class="script-card">
-                <h4>
-                  <span>D4 y M4 — Planos CAD en SolidWorks 2025 y Circuito Hidráulico</span>
-                  <span class="cue-tag">Mostrar Sección 1 (CAD) y Sección 3 (Circuito Hidráulico)</span>
-                </h4>
-                <p class="script-quote">
-                  «Gracias, Andrés. Yo les voy a explicar el modelado CAD, planos y lista de materiales (<strong>D4</strong>), la construcción y caracterización del circuito hidráulico (<strong>M4</strong>), la integración del microcontrolador ESP32-S3 con el módulo de relés (<strong>E3</strong>) y el diseño y sintonía de la estrategia de control en cascada (<strong>C1</strong>).<br><br>
-                  En <strong>planos y materiales (D4)</strong>, modelamos en <strong>SolidWorks 2025</strong> las 18 piezas individuales del prototipo y el ensamble general, generando un juego completo de <strong>20 planos técnicos A3</strong> bajo norma ISO con vistas ortogonales, cortes, cotas de fabricación y lista de materiales (BOM), verificando que todos los materiales trabajen con un margen mayor a 30 K respecto a sus límites de servicio (como el EPS cuya temperatura máxima continua es 75–80 °C mientras el agua no pasa de 45 °C).<br><br>
-                  En el <strong>circuito hidráulico (M4)</strong>, utilizamos un tanque de polipropileno apto hasta 121 °C cargado con <strong>4.4 L de agua</strong> (capacidad térmica de 18.3 kJ/K) con tapa superior para evitar pérdidas por evaporación (que en un recipiente abierto alcanzarían entre 60 y 169 W), pero sin cierre hermético para evitar sobrepresión por dilatación. Impulsamos el agua con una bomba de diafragma <strong>R385 de 12 V</strong> a través de mangueras de PVC de 8 mm de diámetro interno (1.4 m totales, pérdida de carga de 4.71 kPa) y medimos por aforo volumétrico un caudal real en circuito cerrado de <strong>1.76 L/min</strong>, con el cual todo el tanque recircula cada 2.5 minutos.»
-                </p>
-              </div>
-
-              <div class="script-card">
-                <h4>
-                  <span>E3 y C1 — ESP32-S3, Conmutación por Relés y Estrategia de Control en Cascada</span>
-                  <span class="cue-tag">Mostrar Sección 4 (Diagrama de Bloques en Cascada)</span>
-                </h4>
-                <p class="script-quote">
-                  «En la <strong>electrónica de actuación (E3)</strong>, conectamos la placa <strong>ESP32-S3-N16R8</strong> a un módulo de relés optoacoplados Songle SRD-05VDC-SL-C (10 A a 250 V AC) de lógica invertida, asignando el pin <code>GPIO 5</code> a la bomba, el <code>GPIO 6</code> a la resistencia de 833 W y el <code>GPIO 7</code> al ventilador.<br><br>
-                  En cuanto a la <strong>estrategia de control y sintonía (C1)</strong>: como el tanque de 4.4 L y el conjunto radiador–cámara tienen constantes de tiempo similares (~14 min), un control directo sobre el aire causaría un sobreimpulso de varios grados por la energía acumulada en el agua. Por eso diseñamos un <strong>control en cascada</strong>: el <strong>lazo externo PI</strong> lee el error del aire <em>e<sub>a</sub> = T<sub>set,a</sub> − T<sub>aire</sub></em> y calcula cada segundo la temperatura objetivo del agua combinando prealimentación (<em>k<sub>ff</sub> = 2.0</em>), acción proporcional (<em>R = 0.6</em>, que anticipa el apagado a medida que el aire se acerca a la consigna) y acción integral condicional (<em>k<sub>i</sub> = 0.0025 s⁻¹</em>, activa solo cuando |e<sub>a</sub>| &lt; 2 K para evitar windup). Luego, el <strong>lazo interno on/off</strong> con histéresis de <strong>±0.2 K</strong> conmuta la resistencia comparando el agua con esa consigna. Le cedo la palabra a Mariana para cerrar.»
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- GUION 4: MARIANA GIL -->
-          <div role="tabpanel" aria-labelledby="tab-g-4" hidden="until-found">
-            <div class="panel-inner">
-              <div class="script-card">
-                <h4>
-                  <span>M2 y E2 — Aislamiento, Sellado y Acondicionamiento Digital con Filtro de Kalman</span>
-                  <span class="cue-tag">Mostrar Sección 2 y Sección 4</span>
-                </h4>
-                <p class="script-quote">
-                  «Gracias, Santiago. Yo les voy a presentar el montaje del aislamiento térmico y sellado de la cámara (<strong>M2</strong>), el acondicionamiento digital y calibración de los sensores (<strong>E2</strong>), la arquitectura del firmware y sus protecciones (<strong>C2</strong>) y la simulación computacional en Python y ANSYS junto con la comparación frente al experimento (<strong>D3</strong>).<br><br>
-                  En el <strong>aislamiento y sellado (M2)</strong>, revestimos las seis caras interiores con placas de poliestireno expandido (EPS) de <strong>40 mm</strong> ajustadas a presión y un forro interno continuo de lámina de aluminio de <strong>0.95 mm</strong> que uniformiza la temperatura superficial y aísla el EPS de la humedad. En la tapa superior implementamos un tapón escalonado de EPS que entra 40 mm en la boca de la cámara con doble sello perimetral y sellamos con silicona los pasamuros de las mangueras y cables.<br><br>
-                  En el <strong>acondicionamiento de señal y calibración (E2)</strong>, dado que los relés electromecánicos conmutan 7 A AC cerca del bus 1-Wire, programamos tres filtros en cascada: primero, verificación del byte <strong>CRC de 8 bits</strong> descartando códigos de fallo (−127 °C y 85 °C); segundo, un <strong>filtro de rechazo de picos</strong> que bloquea saltos físicamente imposibles (&gt; 3 K/s en aire o &gt; 8 K/s en agua); y tercero, un <strong>filtro de Kalman escalar</strong> (Q = 0.002 K², R = 0.03 K²) que elimina el escalonamiento de cuantización sin introducir retardo apreciable, además de restar los desfases iniciales medidos en frío entre las sondas.»
-                </p>
-              </div>
-
-              <div class="script-card">
-                <h4>
-                  <span>C2 y D3 — Firmware en Tiempo Real y Simulación Computacional (Python vs. ANSYS vs. Experimento)</span>
-                  <span class="cue-tag">Mostrar Sección 5 y Sección 6</span>
-                </h4>
-                <p class="script-quote">
-                  «En el <strong>firmware de la ESP32-S3 (C2)</strong>, estructuramos un lazo no bloqueante exactamente cada <strong>1000 ms</strong> que solicita la conversión asíncrona de los 7 sensores, ejecuta el control en cascada, integra la energía eléctrica consumida (Wh) y el calor cedido al aire para calcular la eficiencia térmica, y evalúa <strong>5 alarmas y protecciones automáticas</strong>: corte de resistencia por sobretemperatura del agua (&gt; 60 °C), apagado de seguridad si falla la sonda del tanque, alerta de desvío en régimen (&gt; 1 K), alerta de inhomogeneidad entre las 4 sondas de aire (&gt; 2 K) y alerta de sensor desconectado.<br><br>
-                  Finalmente, en <strong>simulación computacional (D3)</strong> desarrollamos 6 modelos en Python y <strong>ANSYS 16 (elementos SOLID90, SOLID70 y FLUID116)</strong>. Verificamos la independencia de malla desde 1 400 hasta <strong>225 466 nodos</strong> (variación &lt; 0.03 %). En estado estacionario, ANSYS predice pérdidas de <strong>5.47 W</strong> (a solo 4 % del cálculo analítico de 5.70 W), y en el sistema acoplado tanque–radiador–cámara Python y ANSYS coinciden dentro de <strong>0.01 K</strong>. Al comparar el modelo distribuido frente a la Prueba 2 final del prototipo, el error relativo es de apenas <strong>0.6 % en el tiempo de calentamiento</strong> (17.9 min simulado vs. 17.8 min experimental), <strong>0.2 % en el tiempo en banda</strong> y <strong>0.8 % en el salto térmico final</strong>, validando tanto el diseño térmico como el control implementado. Muchas gracias, quedamos atentos a sus preguntas.»
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div></section></div>
   </main>
   <footer>
     <div class="shell footer-inner">
-      <div><strong>Cámara climática</strong><p>Universidad Militar Nueva Granada · Termofluidos 2026-2</p></div>
+      <div><strong>Cámara Climática Calentada con un Intercambiador Agua–Aire</strong><p>Universidad Militar Nueva Granada · Termofluidos 2026-2</p></div>
       <div><a href="#inicio">Volver al inicio</a></div>
     </div>
   </footer>
@@ -688,7 +551,9 @@
         <strong>1. Conductancia tridimensional del aislamiento EPS (t = 0.040 m, k = 0.038 W/m·K):</strong><br>
         K<sub>c</sub> = k<sub>eps</sub> · [ A<sub>i</sub>/t + 0.54·L<sub>e</sub> + 0.15·(8·t) ]<br>
         K<sub>c</sub> = 0.038 × [ 0.5871/0.040 + 0.54×3.800 + 0.15×8×0.040 ] = 0.038 × (14.677 + 2.052 + 0.048) = <strong>0.6375 W/K</strong><br>
-        R<sub>eps</sub> = 1 / 0.6375 = <strong>1.5687 K/W</strong> (81.4 % de R<sub>total</sub> = 1.928 K/W → <strong>UA = 0.519 W/K</strong>)
+        R<sub>eps</sub> = 1 / 0.6375 = <strong>1.5687 K/W</strong> (81.4 % de R<sub>total</sub> = 1.928 K/W → <strong>UA = 0.519 W/K</strong>).<br>
+        Diseño sin infiltración: <strong>5.70 W</strong> a +11 K. El ensayo sin ventilador dio <strong>0.56 W/K</strong> (error del 7 %). Con el ventilador encendido, la sobrepresión interior provoca fugas por la junta de la tapa sin empaque y eleva la conductancia global medida a <strong>UA<sub>real</sub> = 1.59 W/K</strong> (≈17.5 W a +11 K).<br>
+        Durante la primera hora, el MDF exterior apenas se calienta y el radiador recibe calor del agua. La capacidad térmica efectiva identificada del lado del aire es <strong>C<sub>a</sub> = 3.8 kJ/K (3800 J/K)</strong>.
       </div>
       <div class="formula-box">
         <strong>2. Efectividad ε–NTU del radiador con ventilador de 92 mm instalado (V̇<sub>aire</sub> = 23 m³/h):</strong><br>
@@ -697,9 +562,11 @@
         UA<sub>hx</sub> = 11.4 W/K → NTU = UA<sub>hx</sub> / C<sub>min</sub> = 2.18 → <strong>ε = 0.870</strong> → <strong>K = ε·C<sub>min</sub> = 4.54 W/K</strong>
       </div>
       <div class="formula-box">
-        <strong>3. Constante de tiempo acoplada del aire y ley de control PI en cascada:</strong><br>
-        τ<sub>aire</sub> = C<sub>aire,ef</sub> / (K + UA) = 3800 / (4.54 + 0.519) = <strong>751 s (12.5 min)</strong><br>
-        T*<sub>w</sub>(t) = T<sub>amb</sub> + 2.0·(T<sub>set,a</sub> − T<sub>amb</sub>) + 0.6·e<sub>a</sub>(t) + 0.0025·∫e<sub>a</sub>(t) dt
+        <strong>3. Ley de control PI en cascada del firmware</strong><br>
+        e = T<sub>o</sub> − T<sub>aire</sub>, con T<sub>o</sub> = T<sub>amb,ref</sub> + Δ y Δ = 11 K.<br>
+        dD/dt = (R / T<sub>i</sub>) · e = e / (1200 s), con R = 0.6 y T<sub>i</sub> = 720 s. D(0) = 3.0·Δ/11 = 3.0 K y D ∈ [0, 8 K].<br>
+        T*<sub>w</sub> = sat(T<sub>o</sub> + D + R·e, T<sub>o</sub>, T<sub>tope</sub>), donde T<sub>tope</sub> = min(T<sub>o</sub> + 8 K, 50 °C).<br>
+        El firmware solo integra cuando la consigna calculada está entre ambos topes y |T<sub>w</sub> − T*<sub>w</sub>| &lt; 1.5 K.
       </div>
     </div>
   </dialog>
